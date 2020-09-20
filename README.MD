@@ -24,19 +24,19 @@ They were the only viable tool for flexible layouts for a long time.
 
 #### Chapter 5 - Flexbox
 
-How containers allow for growing and shrinking
+How containers allow for growing and shrinking.
 
 #### Chapter 6 - Grid
 
-Using grid to more precisely divide and specify page-wide layout
+Using grid to more precisely divide and specify page-wide layout.
 
 #### Chapter 7 - Positioning
 
-Within containers, further positioning of elements
+Within containers, further positioning of elements.
 
 #### Chapter 8 - Responsive Design
 
-Exercising more control over layout in response to viewport/device properties
+Exercising more control over layout in response to viewport/device properties.
 
 ## JS
 
