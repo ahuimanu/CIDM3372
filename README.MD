@@ -6,7 +6,7 @@ CSS and JavaScript
 
 [CSS in Depth by Keith J. Grant](https://www.manning.com/books/css-in-depth)
 
-[Book code respository](https://github.com/CSSInDepth/css-in-depth)
+[CSS Book code respository](https://github.com/CSSInDepth/css-in-depth)
 
 ### Chapters 1 - 3
 
@@ -41,3 +41,5 @@ Exercising more control over layout in response to viewport/device properties
 ## JS
 
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
+
+[JS Book code repository](https://github.com/davidflanagan/jstdg7)
