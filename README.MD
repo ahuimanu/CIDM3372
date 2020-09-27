@@ -383,3 +383,368 @@ let rectangle = {
 };
 ```
 
+### Function Definition Expressions
+
+When you assocate a function with an identifer, the definition/structure of the function is an expression (as it returns the function as the value to be stored):
+
+``` javascript
+// This function returns the square of the value passed to it. 
+let square = function( x) { return x * x; };
+```
+
+### Property Access Expressions
+
+The point of creating objects is to contain a group of related values/properties.  Here is the generic form:
+
+``` javascript
+// objects
+expression . identifier 
+
+// arrays
+expression [ expression ]
+
+let obj = {x: 1, y: {z: 3}}; // An example object 
+let arr = [obj, 4, [5, 6]]; // An example array that contains the object 
+obj.x // value is 1: property x of expression obj 
+obj.y.z // value is 3: property z of expression obj.y 
+obj["x"] // value is 1: property x of object obj 
+arr[1] // value is 4: element at index 1 of expression arr 
+a[2]["1"] // value is 6: element at index 1 of expression arr[2] 
+a[0]. x // value is 1: property x of expression arr[0]
+``` 
+
+### Conditional (nullable) Access Expression
+
+In case you trying to access a null or undefined property, you have nullable verions of the above pattern:
+
+``` javascript
+expression ?. identifier 
+expression ?.[ expression ]
+
+let a = { b: null }; 
+a.b?. c.d // = > undefined
+
+// without the conditional, trying to access a null value would throw an error
+```
+
+### Invocation Expression
+
+Calling a function or method, using the parentheses, is an expression as well as functions and methods, by definition, return a single value.
+
+``` javascript
+f( 0) // f is the function expression; 0 is the argument expression. 
+Math.max( x, y, z) // Math.max is the function; x, y, and z are the arguments. 
+a.sort() // a.sort is the function; there are no arguments.
+```
+
+There are nullable/conditional verions of this as well:
+
+``` javascript
+
+// this is the typical approach for something that may not be present
+function square( x, log) { // The second argument is an optional function 
+  if (log) { // If the optional function is passed 
+    log( x); // Invoke it 
+  } 
+  return x * x; // Return the square of the argument 
+}
+
+// the conditional version:
+function square( x, log) { // The second argument is an optional function 
+  log?.( x); // Call the function if there is one
+  return x * x; // Return the square of the argument 
+}
+```
+
+### Object Creation Expessions
+
+When we use the new operator to invoke a contructor that initializes a new object from a class:
+
+``` javascript
+let thingie   = new Object(); 
+let thepoint  = new Point( 2,3);
+```
+### Operators
+
+The [JavaScript reference documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) actually covers quite a bit of the material covered here.  
+
+Here is a link to the documentation on [Expressons and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators).
+
+Here are important components to remember when using operators:
+
+* **Operands**: the values being applied in the operation: most operators have two operands: `1 + 2` where `1` is the **left operand** and `2` is the **right operand**.
+* **Results**: some single value is always the result of an operation
+* **Precedence**: When appearing in a complex expression, some operators will be evaluated before others: `let x = 2 / 1 + 3; //multiplicative happens before additive`
+* **Associativity**: The flow through the operator is either left-to-right or right-to-left: `let y = 3; //assignment is right-to-left`
+* **Order of Operation**: The combination of precedence and associativity determine the expected execution of a complex expression: `let w = x + y * z;`
+
+### The Principle Operator Categories
+
+There are a number of categories of operators and expressions enabled by them.  All can be found in the [Expressions and Operators reference documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators):
+
+* Arithmetic
+* Relational
+  * Equality and inequality: `==, !=, ===, !==`
+  * Comparison: `>, >=, <, <=`
+  * The `in` operator - checks to see if a value exists in a collection
+  * The `instanceof` operator - checks to see if a value is of a known type
+* Logical
+  * Logical **AND**: (`&&`)
+  * Logical **OR**: (`||`)
+  * Logical **NOT**: (`!`) - aka "Negation"
+* Assignment: `=`
+  * most operations can be combined with assignment: `a += b` is equivalent to `a = a + b`
+* Evaluation Expressions
+  * given a string representation of an operation/expression, JavaScript provides the `eval()` method to parse and run the operation/expression: `eval("3 + 2")`
+* Conditional: `?:`
+  * Shorthand for an if/else statement.  An example: `let absolute = x > 0 ? x : -x;`
+* First Defined: `??`
+  * When the left operand is not `null` or `undefined`, we'll use/return that value.  Otherwise, we'll return the right operand.
+  * example: `let max = maxWidth ?? preferences.maxWidth ?? 500; //goes through possibly-defined values and then reverts to a fallback`
+* Delete: `delete`
+  * Attempts to delete an object property or array element: `let obj = { x: 1, y: 2}; delete obj.x;`
+* Await: `await`
+  * Part of contemporary approachces to [asynchronous programming for JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await).
+* Void: `void`
+  * Signifies the absence of a return value from a function.
+
+## Chapter 5 Expressions and Operators
+
+As programming evolved over the years, it because necessary to structure logic in predictable and comprehensible ways.  Control structures arose and these are comprised of *statements*.  Flanagan describes these thusly:
+
+> Expressions are evaluated to produce a value, but statements are executed to make something happen.
+> Flanagan, David. JavaScript: The Definitive Guide (p. 97)
+
+The principle JavaScript control structures/statements are:
+
+* **Expression Statements** - an imperative to complete some number of expressions, terminated with a semicolon.
+* **Blocks** - A [block statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block) is used to group zero or more statements.
+* **Conditionals** *(selection structures)*
+  * [if...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+  * [switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+* **Loops** *(iteration structures)*
+  * [do...while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while)
+  * [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+    * [for each...in](https://developer.mozilla.org/en-US/docs/Archive/Web/JavaScript/for_each...in) [**DEPRECATED!** use `for...in` instead]
+    * [for...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
+    * [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+    * [for await...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) [must be used with async iterables]
+  * [while](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
+* **Jumps** *(flow structures)*
+  * [break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break)
+  * [continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue)
+  * [throw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw)
+  * [return](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
+  * [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
+* **Miscellaneous Statements**:
+  * [with](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with)
+  * [debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
+  * [use strict](https://developer.mozilla.org/en-US/docs/Glossary/strict_mode)
+
+  While Chapter 5 has good coverage of these topics, the above links go to the [JavaScript documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript) at the [MDN](https://developer.mozilla.org/en-US/).
+
+  ### Declarations
+
+  There are important declarative keywords that Flanagan groups into statements.
+
+  * [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+  * [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+  * [var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
+  * [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+  * [class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class)
+  * [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+  * [export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+
+## Chapter 6 Objects
+
+Objects are fundamental to the JavaScript language as they provide an aggregate structure for multiple values (primitive or objects) where we can store and retrieve these values by name.  The aggregated values are referred to as ***properties*** of the object.
+
+### Object Literals
+
+The simplest way to understand objects is to review examples of object literals:
+
+```javascript
+let empty = {}; // An object with no properties 
+
+let point = {   // Two numeric properties
+  x: 0, 
+  y: 0 
+};  
+
+let p2 = {      // More complex values
+  x: point.x, 
+  y: point.y + 1 
+};  
+
+let book = { 
+  "main title": "JavaScript", // These property names include spaces, 
+  "sub-title": "The Definitive Guide", // and hyphens, so use string literals. 
+  for: "all audiences", // for is reserved, but no quotes. 
+  author: { // The value of this property is 
+    firstname: "David", // itself an object.
+    surname: "Flanagan" 
+  } 
+};
+```
+
+### Instantiating Defined Objects (often from a `class`)
+
+``` javascript
+let o = new Object(); // Create an empty object: same as {}. 
+let a = new Array(); // Create an empty array: same as []. 
+let d = new Date(); // Create a Date object representing the current time 
+let r = new Map(); // Create a Map object for key/ value mapping
+```
+
+### Using prototypes
+
+In its earliest days, JavaScript used prototypes to define objects that could then be instatiated as though from a class.
+
+All object literals define/create a [protype object](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes).
+
+In this regard, object literals are a shorthand for:
+
+``` javascript
+let o1 = Object.create({ x: 1, y: 2});  // o1 inherits properties x and y. 
+let z = o1.x + o1.y;                    // = > 3
+```
+
+### Getting and Setting Properties
+
+We can use either the dot (`.`) or square braces (`[]`') to access properties from an object:
+
+``` javascript
+object.property       
+object["property"]    // this implies that an object is an associative array
+```
+
+### Prototype Inheritance
+
+JavaScript objects have a set of “own properties,” and they also inherit a set of properties from their prototype object.
+
+Example:
+
+``` javascript
+// obj inherits object methods from Object.prototype 
+let obj = {};
+
+// obj now has its own property x. 
+obj.x = 1;
+
+// other inherits properties from obj and Object.prototype 
+let other = Object.create(obj); 
+
+// other now its own property y. 
+other.y = 2; 
+
+// last inherits properties from other and Object.prototype
+let last = Object.create(other); 
+
+// last has its own property z. 
+last.z = 3; 
+
+// toString is inherited from Object.prototype 
+let final = last.toString(); 
+
+// value is 3 as properties x and y are inherited from obj and other
+last.x + last.y 
+```
+
+### JSON Serelization of Objects
+
+The [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) was developed to help [serialize](https://developer.mozilla.org/en-US/docs/Glossary/Serialization) JavaScript objects from volatile to non-volatile memory.
+
+### Object Methods
+
+[Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) provides a few universal object methods for inheritance and overriding.
+
+* [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)
+* [toLocaleString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString)
+* [valueOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf)
+* [toJSON()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+
+There are also a variety of static methods and other properties to assist in working with objects in JavaScript.
+
+## Chapter 7 Arrays
+
+From the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array):
+
+> The JavaScript Array class is a global object that is used in the construction of arrays; which are high-level, list-like objects.  Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array, JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them. In general, these are convenient characteristics; but if these features are not desirable for your particular use, you might consider using typed arrays.
+
+### Array Creation
+
+As with objects, the most straight-forward method for creating an array is to use an array literal:
+
+#### Array literals
+
+``` javascript
+let empty = [];                   // An array with no elements 
+let primes = [2, 3, 5, 7, 11];    // An array with 5 numeric elements 
+let misc = [ 1.1, true, "a", ];   // 3 elements of various types + trailing comma
+
+let base = 1024; 
+let table = [base, base + 1, base + 2, base + 3];
+
+//complex array
+let b = [[ 1, {x: 1, y: 2}], [2, {x: 3, y: 4}]];
+
+let count = [1,, 3];              // Elements at indexes 0 and 2. No element at index 1 
+let undefs = [,,];                // An array with no elements but a length of 2
+```
+
+#### Using the Spread Operator
+
+The spread operator `...` explodes another data structure (array) to reveal/make available all of its elements:
+
+``` javascript
+let a = [1, 2, 3]; 
+let b = [0, ... a, 4]; // b = = [0, 1, 2, 3, 4]
+```
+
+Making a "shallow copy" of an array with the spread operator:
+
+``` javascript
+let original = [1,2,3]; 
+let copy = [... original]; 
+copy[0] = 0; // Modifying the copy does not change the original 
+original[0] // = > 1
+```
+
+#### Using the Array() constructor
+
+* an empty array: `let a = new Array();`
+* an array with 10 elements: `let a = new Array(10);`
+* An initialized array: `let a = new Array(1, false, "dude");`
+
+
+#### Using Array.of()
+
+The `of` method will take values and populate a new array with those values
+
+``` javascript
+let a = Array.of(1,3,7,15);
+```
+
+#### Using Array.from()
+
+The `from` method will take an iterable (any data structure that we can loop through) and populate a copied array from it.
+
+``` javascript
+let original = [1, 2, 3, 4 , 5];
+let copy = Array.from(original);
+```
+
+### Accessing and Mutating
+
+We use the square braces `[]` to read from an array index position and write to that same position depending on which operations are performed in conjunction with the square braces:
+
+``` javascript
+let a = ["world"]; // Start with a one-element array 
+let value = a[0]; // Read element 0 
+a[1] = 3.14; // Write element 1 
+
+let i = 2; 
+a[i] = 3; // Write element 2 
+a[i + 1] = "hello"; // Write element 3 
+a[a[i]] = a[0]; // Read elements 0 and 2, write element 3
+```
