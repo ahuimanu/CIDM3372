@@ -176,6 +176,7 @@ There are, generally, three ways that you declare that you'd like to store a val
   David Flanagan has this to say about when to use `const` and when to use `let`:
 
   > There are two schools of thought about the use of the const keyword. One approach is to use const only for values that are fundamentally unchanging, like the physical constants shown, or program version numbers, or byte sequences used to identify file types, for example. Another approach recognizes that many of the so-called variables in our program don’t actually ever change as our program runs. In this approach, we declare everything with const, and then if we find that we do actually want to allow the value to vary, we switch the declaration to let. This may help prevent bugs by ruling out accidental changes to variables that we did not intend. In one approach, we use const only for values that must not change. In the other, we use const for any value that does not happen to change. I prefer the former approach in my own code.
+  
   > David Flanagan - JavaScript: The Definitive Guide - 8th Edition, Page 53
 
 ## The Primitive Types
