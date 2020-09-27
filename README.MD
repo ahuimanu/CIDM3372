@@ -238,4 +238,4 @@ You will frequently use strings your your project that you "hard code" as *strin
 ```
 
 ### Escape Sequences
-![JavaScript String Escape Sequences]('JS-Chapters/images/escape_sequences.PNG)
+![JavaScript String Escape Sequences]('JS-Chapters/images/escape_sequences.PNG')
