@@ -176,7 +176,7 @@ There are, generally, three ways that you declare that you'd like to store a val
   David Flanagan has this to say about when to use `const` and when to use `let`:
 
   > There are two schools of thought about the use of the const keyword. One approach is to use const only for values that are fundamentally unchanging, like the physical constants shown, or program version numbers, or byte sequences used to identify file types, for example. Another approach recognizes that many of the so-called variables in our program don’t actually ever change as our program runs. In this approach, we declare everything with const, and then if we find that we do actually want to allow the value to vary, we switch the declaration to let. This may help prevent bugs by ruling out accidental changes to variables that we did not intend. In one approach, we use const only for values that must not change. In the other, we use const for any value that does not happen to change. I prefer the former approach in my own code.
-  
+
   > David Flanagan - JavaScript: The Definitive Guide - 8th Edition, Page 53
 
 ## The Primitive Types
@@ -320,3 +320,66 @@ The built-in objects in JavaScript, all types, and several useful utility method
 It is useful to know what JavaScript's expected behaviors are when you want to convert between the basic primitive types in JavaScript.
 
 ![JavaScript Type Conversions](JS-Chapters/images/type_conversions.PNG)
+
+### Scope
+
+Variable have a scope, which defines both visibility and lifetime of the availability of the *idetifier* and the value(s) it refers to.  You can usually work out scope by what is contained within a block - defined by curly-braces `{` and `}`.
+
+Scopes:
+
+* local
+* block
+* global
+
+### Descructured Assignment
+
+Take a scruture, like an array, and split it out for storage in a number of individual assignment:
+
+``` javascript
+let [x, y, z] = [1, 2, 3];
+console.log(x);
+console.log(y);
+console.log(z);
+```
+
+## Chapter 4 Expressions and Operators
+
+The principle point of programming is to transform values based on some goals, rules, or objectives.  The evaluation and transformation of values is accomplished using:
+
+* **expressions** - an expression is the evaluation of a phrase of JavaScript such that only a single value remains as a result.
+* **operators** - the evaluation of operands to yield a single outcome, which is typically mathematical in nature and yields numeric or boolean values.
+
+### Primary Expessions
+
+Since the point of an expression is to realize a single value, some valid expressions are constituted by the simple presence of a primary expression value:
+
+Literals are primary expressions:
+
+* 3.21
+* "hello"
+
+Some reserved words are primary expressions
+
+* ***true***
+* ***false***
+* ***null***
+* ***this***
+
+### Object and Array Initializers
+
+These are expressions designed to use *object literals* or *array literals* to provide values for an object or array:
+
+__array initializer__
+
+``` javascript
+let matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+```
+
+__object initializer__
+``` javascript
+let rectangle = { 
+  upperLeft: { x: 2, y: 2 }, 
+  lowerRight: { x: 4, y: 5 } 
+};
+```
+
