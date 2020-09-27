@@ -240,3 +240,77 @@ You will frequently use strings your your project that you "hard code" as *strin
 ### Escape Sequences
 ![JavaScript String Escape Sequences](JS-Chapters/images/escape_sequences.PNG)
 ![JavaScript String Escape Sequences](JS-Chapters/images/escape_sequences2.PNG)
+
+### String Objects and API
+
+There is a broad number of built-in methods and operators for working with strings.
+
+These are all found in the JavaScript [String Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+
+### Template Literals for String Interpolation
+
+Sometimes, you want to format or insert variable values into a strong, the modern JavaScript approach to this is to use *template literals*:
+
+``` javascript
+let name = "Bill"; 
+let greeting = ` Hello ${ name }. `; // creates "Hello Bill."
+```
+
+### Regular Expressions
+
+A regular expression (RegExp) is used to match patterns in strings. Regular expressions are complex and require time and practice to master.
+
+``` javascript
+/^ HTML/; // Match the letters H T M L at the start of a string 
+/[ 1-9][ 0-9]*/; // Match a nonzero digit, followed by any # of digits 
+/\ bjavascript\ b/ i; // Match "javascript" as a word, case-insensitive
+
+let text = "testing: 1, 2, 3"; // Sample text 
+let pattern = /\ d +/ g; // Matches all instances of one or more digits 
+pattern.test( text) // = > true: a match exists 
+text.search( pattern) // = > 9: position of first match 
+text.match( pattern) // = > [" 1", "2", "3"]: array of all matches 
+text.replace( pattern, "#") // = > "testing: #, #, #" 
+text.split(/\ D +/) // = > [""," 1"," 2"," 3"]: split on nondigits
+```
+
+## Booleans
+
+True and False.
+
+Comparisons:
+
+`===` is to absolutely compare two values and the result of using this operator is `true` or `false`
+
+## null and undefined
+
+***null*** is used to indicate the absence of an expected object value associated with an identifier/value.
+***undefined*** suggests that no value has yet been initialed in the memory associated with an identifer/value.
+
+## Symbols as Identifiers
+
+We can use a new type in JavaScript called a [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) to serve as an identifier for properties or values.  They are guaranteed to be unique.
+
+``` javascript
+let strname = "string name"; // A string to use as a property name 
+let symname = Symbol(" propname"); // A Symbol to use as a property name 
+typeof strname // = > "string": strname is a string 
+typeof symname // = > "symbol": symname is a symbol 
+let o = {}; // Create a new object 
+o[strname] = 1; // Define a property with a string name 
+o[symname] = 2; // Define a property with a Symbol name 
+o[strname] // = > 1: access the string-named property 
+o[symname] // = > 2: access the symbol-named property
+```
+
+These are not necessary to use, but are perhaps an interesting development in the language.
+
+## Global Object
+
+The built-in objects in JavaScript, all types, and several useful utility methods are all contained in the [Global Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects).
+
+## Type Conversions
+
+It is useful to know what JavaScript's expected behaviors are when you want to convert between the basic primitive types in JavaScript.
+
+![JavaScript Type Conversions](JS-Chapters/images/type_conversions.PNG)
