@@ -43,3 +43,32 @@ Exercising more control over layout in response to viewport/device properties.
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
 
 [JS Book code repository](https://github.com/davidflanagan/jstdg7)
+
+# Chapter 2 Basics and Running Code
+
+Javascript is typically run within a browser as the browser hosts scripts.  Therefore, for basic coding, we have a few options:
+
+* Create an HTML page an then code within it to use the browser
+* Use the browser's [Developer Tools](https://developers.google.com/web/tools/chrome-devtools/) to run JS code in the console there
+* Use [NodeJS](https://nodejs.org/en/)
+
+I will demonstrate each.
+
+## Language Basics: Lexical Structures
+
+There are some JavaScript basics in terms of structure that are easy to work through.
+
+### Comments
+
+A comment is any content in a script or page that you don't have interpreted/read by the browser.  They are for documenting code and making notes.
+
+``` javascript
+// This is a single-line comment. 
+/* This is also a comment */ // and here is another comment. 
+
+/** 
+  * This is a multi-line comment. The extra * characters at the start of 
+  * each line are not a required part of the syntax; they just look cool! 
+  */
+```
+
