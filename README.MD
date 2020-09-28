@@ -748,3 +748,164 @@ a[i] = 3; // Write element 2
 a[i + 1] = "hello"; // Write element 3 
 a[a[i]] = a[0]; // Read elements 0 and 2, write element 3
 ```
+
+### Sparse Arrays
+
+A quirk of the Array in JavaScript (beside that it really should be called a List) is the ability to allocate elements noncontiguously.
+
+This code provides an example:
+
+```javascript
+let a = new Array(5);   // No elements, but a.length is 5. This is generally the expected behavior.
+a = [];                 // Create an array with no elements and length = 0. 
+a[1000] = 0;           // Assignment adds one element but sets length to 1001. This is weird.
+```
+
+### Length
+
+The length property will report how many elements are in the array and, regardless if the array is sparse of dense, the length does not suffer the [off-by-one issue](https://en.wikipedia.org/wiki/Off-by-one_error) of [zero-based indexing](https://en.wikipedia.org/wiki/Zero-based_numbering).
+
+### Adding and Removing Records in an Array
+
+Since an array in JavaScript is really a list that can grow, shrink, and develop "gaps," then mechanisms for modifying the array are straightfoward:
+
+*Simple Adds*
+
+``` javascript
+/*
+We add to the array below simply by using a higher index, which then creates an element and its value
+*/
+let arr = [];   //zero-length initial array
+arr[0] = "first";
+arr[1] = "next";
+```
+
+That said, there are some methods for adding, removing, and re-arranging elements in JavaScript arrays;
+
+* [push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push) - The `push()` method adds one or more elements to the end of an array and returns the new length of the array.
+* [pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) - The `pop()` method removes the last element from an array and returns that element. This method changes the length of the array.
+* [shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) - The `shift()` method removes the first element from an array and returns that removed element. This method changes the length of the array.
+* [unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) - The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
+
+### Iterating and Iterable
+
+JavaScript is actually standardized as [ECMAScript](https://www.ecma-international.org/publications/standards/Ecma-262.htm) and standardizes the [iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) that enable the ability to iterate (move through) a list or set of values in order to evaluate them algorithmically.  I continue to refer to the MDN documentation as JavaScript was originally introduce by [Netscape](https://en.wikipedia.org/wiki/Netscape), which is the predecessor to the [Mozilla Foundation](https://foundation.mozilla.org/en/) which brings us the [Firefox](https://www.mozilla.org/en-US/) web browser.
+
+A number of the iteration/loop structures available in the language work with these iteration protocols.
+
+#### `for of` loop
+
+``` javascript
+let words = ["mary", "had", "a", "little", "lamb"];
+for (let word of words) {
+  //this is a template string
+  console.log(`${word}`);
+}
+```
+
+We can extract both the index and value of an element with some [JavaScript destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+
+``` javascript
+for(let [index, word] of words.entries()) {
+  console.log(`'${word}' is found at ${index}`);
+}
+```
+
+#### using the forEach method of Array
+
+The argument is actually called an [arrow function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) ([a.k.a. lambda expressions/functions](https://www.vinta.com.br/blog/2015/javascript-lambda-and-arrow-functions/)) and it is a shorthand for calling an inline anonymous function or block
+
+``` javascript
+words.forEach( word => { console.log(`${word}`)})
+```
+
+#### the `for` loop works too
+
+``` javascript
+for(let i = 0; i < words.length; i++) {
+  console.log(`${words[i]}`);
+}
+```
+
+### Multi-dimentional arrays
+
+JavaScript does not support true multidimensional arrays, but you can approximate them with arrays of arrays. To access a value in an array of arrays, simply use the [] operator twice. 
+
+``` javascript
+// Create a multidimensional array 
+let table = new Array(10); // 10 rows of the table 
+for( let i = 0; i < table.length; i++ ) { 
+  table[i] = new Array(10); // Each row has 10 columns 
+} 
+  
+// Initialize the array 
+for( let row = 0; row < table.length; row++ ) {
+  for( let col = 0; col < table[row].length; col++ ) {
+    table[row][col] = row * col;
+  } 
+}
+```
+
+### Array Methods
+
+There are many methods built in with arrays to assist in working with an array.
+
+Flanagan organizes these as such:
+* Iterator methods
+* Stack and queue methods
+* Subarray methods for working within an array
+* Searching and sorting
+
+Much of this is the bread and butter of computer science and that power is manifest in these methods for our conveience.
+
+#### Iterators
+
+* [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) - The `forEach()` method executes a provided function once for each array element.
+* [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) - The `map()` method creates a new array populated with the results of calling a provided function on every element in the calling array. Useful for transforming the contents of the array "en masse."
+* [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) - The `filter()` method creates a new array with all elements that pass the test implemented by the provided function.
+* [find()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) - The `find()` method returns the value of the first element in the provided array that satisfies the provided testing function.
+* [findIndex()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) - The `findIndex()` method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1, indicating that no element passed the test.
+* [every()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) - The `every()` method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+* [some()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) - The `some()` method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value.
+* [reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) - The `reduce()` method executes a reducer function (that you provide) on each element of the array, resulting in single output value.
+* [reduceRight()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight) - The `reduceRight()` method applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.
+* [flat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat) - The `flat()` method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+* [flatMap()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap) - The `flatMap()` method returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a `map()` followed by a `flat()` of depth 1, but slightly more efficient than calling those two methods separately.
+* [concat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) - The `concat()` method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
+
+#### Stacks and Queues
+
+We've already seen:
+
+* [push()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+* [pop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
+* [shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+* [unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+
+#### Subarrays
+
+* [slice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) - The `slice()` method returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified.
+* [splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) - The `splice()` method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+* [fill()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) - The `fill()` method changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length). It returns the modified array.
+* [copyWithin()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)
+
+#### Searching and Sorting
+
+* [indexOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) - The `indexOf()` method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+* [lastIndexOf()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf) - The `lastIndexOf()` method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+* [includes()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) - The `includes()` method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+* [sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) - The `sort()` method sorts the elements of an array in place and returns the sorted array. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.  The time and space complexity of the sort cannot be guaranteed as it depends on the implementation.
+* [reverse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) - The `reverse()` method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+
+#### Converting an Array to a String
+* [join()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) - The `join()` method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string. If the array has only one item, then that item will be returned without using the separator.
+* [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString) - The `toString()` method returns a string representing the specified array and its elements.
+* [toLocaleString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString) - The `toLocaleString()` method returns a string representing the elements of the array. The elements are converted to Strings using their toLocaleString methods and these Strings are separated by a locale-specific String (such as a comma “,”).
+
+#### Strings are read-only arrays
+
+``` javascript
+let s = "test"; 
+s.charAt( 0) // = > "t" 
+s[ 1] // = > "e"
+```
