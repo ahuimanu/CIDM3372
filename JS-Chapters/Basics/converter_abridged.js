@@ -18,10 +18,11 @@ https://www.checkyourmath.com/
 
 const usageMessage = 
 `
-Usage: node unit_convert.js <unit-from> <unit-to> <value-to-convert>
+Usage: node converter.js <unit-from> <unit-to> <value-to-convert>
     length units:
         km: kilometers
         mi: miles    
+        nm: nautical-miles        
         m: meters
         cm: centimeters
         y: yards        
