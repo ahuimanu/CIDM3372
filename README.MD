@@ -8,11 +8,11 @@ CSS and JavaScript
 
 [CSS Book code respository](https://github.com/CSSInDepth/css-in-depth)
 
-## Chapters 1 - 3
+## Part 1 - Fundamentals (Chapters 1 - 3)
 
 Basics and Box Model
 
-## Chapters 4 - 8
+## Part 2 - Mastering Layout (Chapters 4 - 8)
 
 Mastering layout
 
@@ -38,7 +38,57 @@ Within containers, further positioning of elements.
 
 Exercising more control over layout in response to viewport/device properties.
 
-# JS
+## Part 3 - CSS at Scale (Chapters 9 and 10)
+
+How to manage CSS as projects increase in scale and scope
+
+### Chapter 9 - Modular CSS
+
+> Modular CSS means breaking the page up into its component parts. These parts should be reusable in multiple contexts, and they shouldn’t directly depend upon one another. The end goal is that changes to one part of your CSS will not produce unexpected effects in another.
+
+> ***Encapsulation*** The grouping together of related functions and data to comprise an object. It’s used to hide the state or values of a structured object so that outside parties cannot operate on them.
+
+* Emerging problems as a project grows
+* Organizing CSS into modules
+* Preventing escalating selector specificity
+* Surveying popular CSS methodologies
+
+**Block, Element, Mofifier**
+
+[BEM](https://css-tricks.com/bem-101/)
+
+**Parsimony**
+
+> Your modules should each be responsible for one thing. Our Message module is responsible for making a message noticeable. Our Media module is responsible for positioning an image beside some text. You should be able to concisely summarize its purpose. Some modules will be for layout, others will be for stylistic purposes. When a module tries to do more than one thing, you should consider breaking it into smaller modules.
+
+#### CSS Methodologies
+
+A set of guidelines to help organize your CSS:
+
+* [Object-Oriented CSS (OOCSS)](https://github.com/stubbornella/oocss/wiki) - [Elaboration](https://www.slideshare.net/stubbornella/object-oriented-css)
+* [Scalable and Modular Architecture for CSS](http://smacss.com/) - [Read about it](http://smacss.com/book/)
+* [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/)
+* [Inverted Triangle CSS](https://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
+
+#### General Application
+
+For your stylesheet:
+
+* define and apply base rules
+* define and apply module rules (group classes to constitute the module)
+* define utility classes to be used throughout
+* [SMACSS](http://smacss.com/) then suggests we specify layout components
+
+Summarizing the advice:
+
+* Break your CSS up into small, reusable modules.
+* Never write styles that reach into another module and change its appearance.
+* Use variant classes to provide multiple versions of the same module.
+* Divide large constructs into smaller modules; build your pages by piecing together a number of modules.
+* Group all rules for a module together in your stylesheet.
+* Use a naming convention such as double-hyphens and double-underscores to make your modules’ structure easier to understand at a glance.
+
+# JavaScript
 
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
 
