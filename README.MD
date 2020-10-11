@@ -48,7 +48,7 @@ How to manage CSS as projects increase in scale and scope
 
 > ***Encapsulation*** The grouping together of related functions and data to comprise an object. It’s used to hide the state or values of a structured object so that outside parties cannot operate on them.
 
-* Emerging problems as a project grows
+> * Emerging problems as a project grows
 * Organizing CSS into modules
 * Preventing escalating selector specificity
 * Surveying popular CSS methodologies
