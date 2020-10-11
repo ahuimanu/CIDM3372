@@ -1,0 +1,18 @@
+{
+  "name": "kss-demonstration",
+  "version": "0.0.1",
+  "description": "Demonstrating KSS",
+  "main": "index.js",
+  "scripts": {
+    "build": "kss --config kss-config.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "KSS"
+  ],
+  "author": "ahuimanu",
+  "license": "ISC",
+  "devDependencies": {
+    "kss": "^3.0.1"
+  }
+}

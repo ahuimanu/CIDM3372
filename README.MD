@@ -88,6 +88,32 @@ Summarizing the advice:
 * Group all rules for a module together in your stylesheet.
 * Use a naming convention such as double-hyphens and double-underscores to make your modules’ structure easier to understand at a glance.
 
+### Chapter 10 - Pattern Libraries and Style Guides
+
+Eventually, you'll find that your projects start to exhibit common needs and that you develop consistent approaches to addressing these needs.
+
+You will apply the same solutions to these problems and the modular approach makes this easier.  As you document how to find and use your common modules, you'll develop a ***pattern library*** as a ***style guide***.
+
+You would do so as...
+
+> a separate set of HTML pages, showcasing each CSS module. This is a development tool that you and your team will use when building the site.
+
+Further distinguishing Pattern Library and Style Guide:
+
+> ***PATTERN LIBRARY VS. STYLE GUIDE***
+Some pattern libraries are often called a style guide (or “living style guide”). In fact, style guide is probably the more common—there’s a distinction, however.
+
+The name style guide implies not only technical instruction on how to use the modules, but also opinionated direction about when and why you should or should not use them. This direction is typically for guiding a developer through requirements of the product’s branding.
+
+If branding instruction is relevant on your project, feel free to add it to your pattern library. But that gets into the realm of marketing rather than development. Because this chapter focuses on the technical documentation aspect, I’ll use the name pattern library instead.
+
+#### Using KSS to Create a Pattern Library
+
+* Install NodeJS (should be there from a previous assignment).
+* Initialize a new nodejs project using the [Node Package Manager](https://docs.npmjs.com/getting-started/): `npm init -y`
+* Install KSS: `npm install --save-dev kss`
+
+
 # JavaScript
 
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
