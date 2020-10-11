@@ -49,9 +49,9 @@ How to manage CSS as projects increase in scale and scope
 > ***Encapsulation*** The grouping together of related functions and data to comprise an object. It’s used to hide the state or values of a structured object so that outside parties cannot operate on them.
 
 > * Emerging problems as a project grows
-* Organizing CSS into modules
-* Preventing escalating selector specificity
-* Surveying popular CSS methodologies
+> * Organizing CSS into modules
+> * Preventing escalating selector specificity
+> * Surveying popular CSS methodologies
 
 **Block, Element, Mofifier**
 
@@ -103,9 +103,9 @@ Further distinguishing Pattern Library and Style Guide:
 > ***PATTERN LIBRARY VS. STYLE GUIDE***
 Some pattern libraries are often called a style guide (or “living style guide”). In fact, style guide is probably the more common—there’s a distinction, however.
 
-The name style guide implies not only technical instruction on how to use the modules, but also opinionated direction about when and why you should or should not use them. This direction is typically for guiding a developer through requirements of the product’s branding.
+> The name style guide implies not only technical instruction on how to use the modules, but also opinionated direction about when and why you should or should not use them. This direction is typically for guiding a developer through requirements of the product’s branding.
 
-If branding instruction is relevant on your project, feel free to add it to your pattern library. But that gets into the realm of marketing rather than development. Because this chapter focuses on the technical documentation aspect, I’ll use the name pattern library instead.
+> If branding instruction is relevant on your project, feel free to add it to your pattern library. But that gets into the realm of marketing rather than development. Because this chapter focuses on the technical documentation aspect, I’ll use the name pattern library instead.
 
 #### Using KSS to Create a Pattern Library
 
