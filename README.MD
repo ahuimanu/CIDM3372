@@ -985,3 +985,275 @@ let s = "test";
 s.charAt( 0) // = > "t" 
 s[ 1] // = > "e"
 ```
+
+## Chapter 8 Functions
+
+From Flanagan:
+
+> Functions are a fundamental building block for JavaScript programs and a common feature in almost all programming languages. A function is a block of JavaScript code that is defined once but may be executed, or invoked, any number of times. JavaScript functions are parameterized: a function definition may include a list of identifiers, known as parameters, that work as local variables for the body of the function. Function invocations provide values, or arguments, for the function’s parameters. Functions often use their argument values to compute a return value that becomes the value of the function-invocation expression. In addition to the arguments, each invocation has another value — the invocation context — that is the value of the this keyword.
+
+Essentially, a function has these parts;
+
+``` javascript
+function name(arguments) {
+  //body
+  return statement;
+}
+```
+From Flanagan:
+
+>One of the important things to understand about function declarations is that the name of the function becomes a variable whose value is the function itself. 
+
+### Arrow Functions
+
+These are a compact form that creates an anonymous function where the function's expression is what is desired for use:
+
+``` javascript
+const sum = (x, y) = > { return x + y; };
+```
+
+### Nested Functions
+
+Since functions are values that can be stored (and called), they can be nested:
+
+``` javascript
+function hypotenuse( a, b) { 
+  function square( x) { return x* x; } 
+  return Math.sqrt( square( a) + square( b)); 
+}
+```
+
+### Function Invokation
+
+Functions define behavior that is not executed until the function is "called" or invoked.
+
+### Function arguments and parameters
+
+* When a function is invoked, and values are expected as inputs to the function, it is said that we pass ***arguments*** to the function.
+* When a function is defined, we specify the ***parameters*** that a function will accept as inputs.
+
+## Chapter 9 Classes
+
+Classes provide an opportunity to create an "Object Blueprint" from a class specification.
+
+>In JavaScript, a class is a set of objects that inherit properties from the same prototype object. The prototype object, therefore, is the central feature of a class.
+
+``` javascript
+class Student {
+  constructor(fname, lname, email){
+    this.fname = fname;
+    this.lname = lname;
+    this.email = email;
+
+    toString() {
+      return `$Hi, my name is ${this.fname} ${this.lname}, send me an email: ${this.email}`;
+    }
+  }
+}
+
+class CISStudent extends Student {
+  constructor(languages[]){
+    this.languages = languages;
+  }
+}
+```
+
+## Chapter 10 - Modules
+
+>The goal of modular programming is to allow large programs to be assembled using modules of code from disparate authors and sources and for all of that code to run correctly even in the presence of code that the various module authors did not anticipate. As a practical matter, modularity is mostly about encapsulating or hiding private implementation details and keeping the global namespace tidy so that modules cannot accidentally modify the variables, functions, and classes defined by other modules.
+
+### Modularization Optiosn
+
+We can achieve modularity in our designs or by using either Node.js or ES6 approaches:
+
+#### NodeJS
+
+We use other modular code with the `require()` method.
+
+We specify what to export for external use with the `module.export` statement:
+
+``` javascript
+module.exports = class BitSet extends AbstractWritableSet { 
+  // implementation omitted 
+};
+```
+
+Node imports:
+
+``` javascript
+// These modules are built in to Node 
+const fs = require("fs");      // The built-in filesystem module 
+const http = require("http");  // The built-in HTTP module 
+
+// The Express HTTP server framework is a third-party module. 
+// It is not part of Node but has been installed locally 
+const express = require("express");
+```
+
+#### ES6
+
+ECMAScript 6 eventually developed a standardized way of expressing imports and exports.
+
+ES6 Exports:
+``` javascript
+export const PI = Math.PI; 
+
+export function degreesToRadians( d) { 
+  return d * PI / 180; 
+} 
+
+export class Circle { 
+  constructor( r) { 
+    this.r = r; 
+  } 
+  area() { 
+    return PI * this.r * this.r; 
+  }
+}
+```
+
+ES6 Imports:
+
+``` javascript
+import BitSet from './ bitset.js';
+import { mean, stddev } from "./ stats.js";
+import { render as renderImage } from "./ imageutils.js"; 
+import { render as renderUI } from "./ ui.js";
+```
+
+## Chapter 11 JavaScript Standard Library
+
+There a number of functions and classes built into JavaScript that are considered part of a "standard library" for the language:
+
+* The ***Set*** and ***Map*** classes for representing sets of values and mappings from one set of values to another set of values. 
+* Array-like objects known as ***TypedArrays*** that represent arrays of binary data, along with a related class for extracting values from non-array binary data. 
+* ***Regular expressions*** and the `RegExp` class, which define textual patterns and are useful for text processing. 
+* The `Date` class for representing and manipulating dates and times. 
+* The `Error` class and its various subclasses, instances of which are thrown when errors occur in JavaScript programs. 
+* The `JSON` object, whose methods support serialization and deserialization of JavaScript data structures composed of objects, arrays, strings, numbers, and booleans
+* The `Intl` object and the classes it defines that can help you localize your JavaScript programs. 
+* The `Console` object, whose methods output strings in ways that are particularly useful for debugging programs and logging the behavior of those programs. 
+* The `URL` class, which simplifies the task of parsing and manipulating URLs. 
+* `setTimeout()` and related functions for specifying code to be executed after a specified interval of time has elapsed.
+
+I will not cover these in depth, but Flanagan does.  However, we will undoubtedly use them along the way.
+
+## Chapter 13 Asynchronous JavaScript
+
+This chapter is very important as it goes hand-in-hand with subsequent chapters on DOM manipulation.  All of the asynchronous techniques here are the foundations of many of the techniques from Chapters 15 (client-side) and 16 (server-side).
+
+The easiest to work with is the various timers built into JavaScript.
+
+### Timers
+
+The simplest timer is the `setTimeout` function:
+
+``` javascript
+setTimeout(checkForUpdates, 60000); // this is a one-time delayed call
+```
+
+We can also use `setInterval()`, which will repeatedly call an action.
+
+``` javascript
+// Call checkForUpdates in one minute and then again every minute after that 
+let updateIntervalId = setInterval( checkForUpdates, 60000); // setInterval() returns a value that we can use to stop the repeated 
+// invocations by calling clearInterval(). (Similarly, setTimeout() // returns a value that you can pass to clearTimeout()) 
+function stopCheckingForUpdates() { 
+  clearInterval( updateIntervalId);
+}
+```
+
+### Events
+
+Another form of asynchronous behavior is to respond to run-time events, usually fired by the user of a page in the browser:
+
+``` javascript
+// Ask the web browser to return an object representing the HTML < button > element that matches this CSS selector 
+let okay = document.querySelector('# confirmUpdateDialog button.okay'); 
+// Now register a callback function to be invoked when the user clicks on that button. 
+// In this example, applyUpdate() is a hypothetical callback
+okay.addEventListener(' click', applyUpdate); 
+```
+
+### Network latency and events
+
+Another reason for asynchronous JavaScript is the natural latency and periodic nature of network traffic events:
+
+``` javascript
+function getCurrentVersionNumber( versionCallback) { // Note callback argument 
+  // Make a scripted HTTP request to a backend version API 
+  let request = new XMLHttpRequest(); 
+  request.open(" GET", "http:// www.example.com/ api/ version"); 
+  request.send(); // Register a callback that will be invoked when the response arrives 
+  request.onload = function() { 
+    if (request.status === 200) { 
+      // If HTTP status is good, get version number and call callback. 
+      let currentVersion = parseFloat( request.responseText); 
+      versionCallback( null, currentVersion); 
+    } else { 
+      // Otherwise report an error to the callback 
+      versionCallback( response.statusText, null); 
+    } 
+  }; 
+  
+  // Register another callback that will be invoked for network errors 
+  request.onerror = request.ontimeout = function(e) { 
+    versionCallback( e.type, null); 
+  }; 
+}
+```
+
+### Promises
+
+Promises coordinate asynchronous callbacks so that when a response to a request is received sometime after the request, that response fulfills a "promise" to call the designated function so that it is possible to evaluate and process a response to the request.
+
+From Flanagan:
+
+>A `Promise` is an object that represents the result of an asynchronous computation. That result may or may not be ready yet, and the Promise API is intentionally vague about this: there is no way to synchronously get the value of a Promise; you can only ask the Promise to call a callback function when the value is ready.
+
+``` javascript
+getJSON( url).then( jsonData = > { 
+  // This is a callback function that will be asynchronously 
+  // invoked with the parsed JSON value when it becomes available. 
+});
+```
+
+Notice that `then` is sort of a response to an implied `if` that says, when this *request* receives a *response*, then peform this action over here.
+
+### async and await
+
+Another development in JavaScript is that provides a Promise-like behavior with keywords used in code that looks synchronous.  C# and Python also have similar approaches.
+
+These are accomplished with the `async` and `await` keywords.
+
+``` javascript
+async function getHighScore() { 
+  let response = await fetch("/ api/ user/ profile"); 
+  let profile = await response.json(); 
+  return profile.highScore; 
+}
+```
+
+The above code indicates that portions of the `getHighScore` function, indicated by the `async` keyword, will go off and perform some work while not stopping the entire programming, which is what is indicated by the `await` keyword.
+
+# Chapter 15 JavaScript in Web Browsers
+
+From Flanagan:
+
+>Client-Side JavaScript In this book, and on the web, you’ll see the term “client-side JavaScript.” The term is simply a synonym for JavaScript written to run in a web browser, and it stands in contrast to “server-side” code, which runs in web servers. The two “sides” refer to the two ends of the network connection that separate the web server and the web browser, and software development for the web typically requires code to be written on both “sides.” Client-side and server-side are also often called “frontend” and “backend.”
+
+We will spend a lot of time in just chapters 15 and 16 as they consistute the useful application of the JavaScript language.  The JavaScript language is essential knowledge in the Web Application space as it is, effectively, the **only** game in town in terms of client-side (browser) scripting.
+
+We will go long, and supplement from other sources, on each of the these areas:
+
+* Control document content (§ 15.3) and style (§ 15.4) via the DOM 
+* Determine the on-screen position of document elements (§ 15.5) 
+* Create reusable user interface components (§ 15.6) 
+* Draw graphics (§ 15.7 and § 15.8) 
+* Play and generate sounds (§ 15.9) 
+* Manage browser navigation and history (§ 15.10) 
+* Exchange data over the network (§ 15.11) 
+* Store data on the user’s computer (§ 15.12) 
+* Perform concurrent computation with threads (§ 15.13)
+
+Much much more to come here soon.
