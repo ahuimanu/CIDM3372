@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">    
+    <style>
+        body {
+            font-family: 'Roboto';
+            font-size: 18px;
+        }
+
+        .awesome-output {
+            background-color: lavender;
+            color: orange;
+            font-style: oblique;
+        }
+
+        .info-message-span {
+            background-color: papayawhip;
+            color: crimson;
+            font-family: 'Ubuntu';
+        }
+
+        input[type=email]
+        input[type=text], 
+        input[type=tel],
+        input[type=pwd] {
+            width: 100%;
+            padding: 8px 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=button], 
+        input[type=submit], 
+        input[type=reset] {
+            background-color: dodgerblue;
+            border: none;            
+            border-radius: 0.6rem;            
+            color: white;
+            cursor: pointer;
+            float: right;         
+            margin: 8px 8px;
+            padding: 16px 32px;            
+            text-decoration: none;   
+        }
+
+        input:invalid {
+            border: 2px dashed red;
+        }
+
+        /* input:invalid:required {
+            background-image: linear-gradient(to right, grey, lightgrey);
+        } */
+
+        input:valid {
+            border: 2px solid black;
+        }               
+
+        .form-label-text {
+            color:whitesmoke;
+            font-family: 'Lato';            
+        }
+
+        .form-input-text {
+            font-family: 'Lato';
+            float: right;
+        }
+
+        .form-output-text {
+            color:mintcream;   
+            font-family: 'Lato';                     
+            font-size: larger;
+        }
+
+        .rcorners {
+            border-radius: 0.6rem;
+            background: dodgerblue;
+            padding: 1.1rem;
+            margin: 0.6rem;
+            /* max-width: 500px; */
+            height: 65px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demonstrating Inputs and Events</h1>
+    <p>Messages: <span id="messages" class="info-message-span"></span></p>
+    <form action="#" name="personForm" method="post">
+
+        <!-- <div>
+            <label for="text">text input type: </label>
+            <input type="text" id="text" name="text">
+          </div>
+          <div>
+            <label for="pwd">password input type: </label>
+            <input type="password" id="pwd" name="pwd">
+          </div>
+          <div>
+            <label for="email">email input type: </label>
+            <input type="email" id="email" name="email">
+          </div>
+          <div>
+            <label for="url">url input type: </label>
+            <input type="url" id="url" name="url">
+          </div>
+          <div>
+            <label for="number">number input type: </label>
+            <input type="number" id="number" name="number">
+          </div>
+          <div>
+            <label for="tel">tel input type: </label>
+            <input type="tel" id="tel" name="tel">
+          </div>
+          <div>
+            <label for="search">search input type: </label>
+            <input type="search" id="search" name="search">
+          </div> -->
+
+        <div class="rcorners">
+            <label class="form-label-text" for="name">Enter your name (required)</label>
+            <input class="form-input-text" 
+                   id="name"                   
+                   name="name"
+                   onblur="formInputBlurred"
+                   onfocus="console.log(`Entered: ${this.name}`)"
+                   oninput="replicateTyping"
+                   onmouseover="mouseEnterMessages(this)"
+                   type="text" 
+                   required
+                   autofocus>
+            <br><span id="name-error""></span>
+        </div>
+        <div class="rcorners">
+            <label class="form-label-text" for="pwd">Enter a password</label>
+            <input class="form-input-text" 
+                   id="pwd"
+                   name="pwd"
+                   onblur="formInputBlurred"       
+                   onfocus="console.log(`Entered: ${this.name}`)"
+                   onmouseover="mouseEnterMessages(this)"                   
+                   type="pwd" 
+                   required>
+        </div>        
+        <div class="rcorners">
+            <label class="form-label-text" for="email">Enter an email address</label>
+            <input class="form-input-text" 
+                   type="email" 
+                   name="email" 
+                   id="email"
+                   required>
+        </div>        
+        <div class="rcorners">
+            <label class="form-label-text" for="tel">Enter a phone number</label>
+            <input class="form-input-text" 
+                   type="tel" 
+                   name="tel" 
+                   id="tel"
+                   required>
+        </div>
+        <div class="rcorners">
+            <label class="form-label-text" for="color">Please select a color</label>
+            <input class="form-input-text" 
+                   type="color" 
+                   name="color" 
+                   id="color"
+                   required>
+        </div>        
+        <div class="rcorners">
+            <label class="form-label-text" for="awesome">As a percentage, how awesome are you? </label>
+            <input type="range" 
+                   name="awesome" 
+                   id="awesome" 
+                   min="0" 
+                   max="100" 
+                   step ="10" 
+                   value="50"
+                   onchange="awesomeInputChanged()">
+            <output class="form-output-text" for="price" onchange="awesomeOutputChanged()">50</output>
+            <output class="awesome-output"></output>
+        </div>
+
+
+        <input type="submit" value="submit">
+    </form>
+    <script>
+
+        let mouseEnterMessages = (el) => {
+
+            const messageSpanElement = document.querySelector('#messages');
+
+            switch(el.name){
+                case "name":
+                    messageSpanElement.textContent = "Please enter your name here...";
+                    console.log(`The mouse is in: ${el.name}`);
+                    break;
+            }
+
+
+        }
+
+        function awesomeInputChanged(){
+            const price = document.querySelector('#awesome');
+            const output = document.querySelector('.form-output-text');
+            console.log(price.value);
+            output.textContent = price.value;            
+        }
+        function awesomeOutputChanged(){
+            let dudeElement = document.querySelector('.form-output-text');
+            console.log(dudeElement);
+            let awesomeValue = dudeElement.textContent;
+            console.log(`da shiznit ${awesomeValue}`);
+        }        
+
+        function replicateTyping(){
+            let nameElement = document.querySelector('#name');
+            let nameSpanElement = document.querySelector('#name-error');
+
+            console.log("DUDE");
+            nameSpanElement.textContent = nameElement.value;
+
+        }
+
+        let formInputBlurred = (evt) => {
+
+            console.log(evt.name);
+
+            // let nameTextElement = document.querySelector('#name');
+            let nameText = document.forms['personForm']['name'].value;
+            nameText = nameText.toUpperCase();
+            document.forms['personForm']['name'].value = nameText;
+            console.log(nameText);
+        }
+
+    </script>            
+</body>
+</html>
