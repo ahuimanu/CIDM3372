@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Example</title>
+
+    <!-- normalize.css 
+         https://necolas.github.io/normalize.css/
+    -->
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+    <!-- my styles -->
+    <link rel="stylesheet" href="css/sytles.css" />
+
+    <link rel="stylesheet" 
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <script src="js/weatherstuff.js"></script>
+    <script src="js/mapstuff.js"></script>
+</head>
+<body>
+    <div class="w3-container">
+        <div class="flex-container">
+            <h1>Map and Weather</h1>
+            <p>Showing leaflet, fetch, grid, flex, and W3CSS</p>
+        </div>
+        <div class="grid-container">
+            <header>
+                <h2 id="headertext">Header</h2>
+            </header>
+            <aside>
+                <h4>Weather Input</h4>
+                <div id="alert_panel" class="w3-panel w3-red">
+                    <h3>Required</h3>
+                    <p>Station ID is Required</p>
+                </div>                
+                <label class="w3-tooltip" for="metar">Station ID <span class="w3-text"> is required</span></label>
+                <input class="w3-input" id="metar" name="metar" placeholder="METAR Station ID..." type="text" >
+                <button onclick="getMETAR()" class="w3-button w3-block w3-dark-grey">Show METAR</button>
+            </aside>
+            <div id="mapid">
+                <!-- map goes in here -->
+            </div>                        
+            <aside>
+                <h3>Weather Output</h3>
+                <p id="metar_raw"></p>
+                <p id="metar_xml"></p>
+            </aside>
+            <footer>
+                <h3>Footer</h3>
+                <table id="metar_table" class="w3-table w3-border">
+                    <tr>
+                        <th>Station</th>
+                        <th>Lat</th>
+                        <th>Lon</th>
+                        <th>METAR</th>
+                    </tr>
+                </table>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
