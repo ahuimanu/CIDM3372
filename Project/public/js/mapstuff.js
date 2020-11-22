@@ -41,7 +41,7 @@ const userAgentPositionUpdate = (position) => {
 
     headtext.textContent = `LAT: ${lat} LON: ${lon}`;
 
-    const zoom = 13;
+    const zoom = 11;
     
     //create map
     if(mymap == null)

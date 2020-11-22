@@ -48,17 +48,21 @@
             </header>
             <aside>
                 <h3>Weather Input</h3>
-                <div id="alert_panel" class="w3-panel w3-red">
+                <div id="alert_panel" class="w3-panel w3-hide w3-red">
                     <h3>Required</h3>
-                    <p>Station ID is Required</p>
-                </div>                
+                    <p>Valid ICAO Station ID is Required</p>
+                </div>
                 <label class="w3-tooltip" for="metar">Station ID <span class="w3-text"> is required</span></label>
-                <input class="w3-input" id="metar" name="metar" placeholder="METAR Station ID..." type="text" >
+                <input class="w3-input" 
+                       id="metar" 
+                       name="metar" 
+                       placeholder="METAR Station ID..." 
+                       type="text" >
                 <button onclick="getMETAR()" class="w3-button w3-block w3-dark-grey">Show METAR</button>
             </aside>
             <div id="mapid">
                 <!-- map goes in here -->
-            </div>                        
+            </div>                    
             <aside>
                 <h3>Weather Output</h3>
                 <!-- <p id="metar_raw"></p> -->

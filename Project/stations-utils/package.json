@@ -1,0 +1,18 @@
+{
+  "name": "stations-utils",
+  "version": "1.0.0",
+  "description": "Works with the NCEP/AWC stations.txt file used to cross-verify METAR stations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "metar",
+    "stations.tx"
+  ],
+  "author": "tvs",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
