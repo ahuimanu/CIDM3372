@@ -2,7 +2,7 @@
 
 CSS and JavaScript
 
-NOTE: See the Project folder for code for the final project
+**NOTE**: See the Project folder for code for the final project
 
 ## CSS
 
@@ -470,7 +470,7 @@ When you assocate a function with an identifer, the definition/structure of the 
 let square = function( x) { return x * x; };
 ```
 
-### Property Access Expressions
+#### Property Access Expressions
 
 The point of creating objects is to contain a group of related values/properties.  Here is the generic form:
 
