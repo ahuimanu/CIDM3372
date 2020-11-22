@@ -65,7 +65,7 @@ header, footer {
     display: flex;
     flex: 2 1 auto;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: start;    
     /* min-width: 0; */
 }
 
@@ -88,4 +88,8 @@ header, footer {
     font-family: 'Work Sans', sans-serif;
     flex-direction: column;
     justify-content: center;
+}
+
+.weather-element {
+    color: darkslategrey;
 }

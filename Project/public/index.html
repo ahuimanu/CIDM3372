@@ -29,8 +29,12 @@
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
 
-    <script src="js/weatherstuff.js"></script>
+    <!-- at the moment, the order of these matters -->
+    <script src="js/localstorage.js"></script>
+    <script src="js/utils.js"></script>    
     <script src="js/mapstuff.js"></script>
+    <script src="js/weatherstuff.js"></script>
+
 </head>
 <body>
     <div class="w3-container">
@@ -40,10 +44,10 @@
         </div>
         <div class="grid-container">
             <header>
-                <h2 id="headertext">Header</h2>
+                <h2 id="headertext">NOAA Weather</h2>
             </header>
             <aside>
-                <h4>Weather Input</h4>
+                <h3>Weather Input</h3>
                 <div id="alert_panel" class="w3-panel w3-red">
                     <h3>Required</h3>
                     <p>Station ID is Required</p>
@@ -57,13 +61,49 @@
             </div>                        
             <aside>
                 <h3>Weather Output</h3>
-                <p id="metar_raw"></p>
-                <p id="metar_xml"></p>
+                <!-- <p id="metar_raw"></p> -->
+                <!-- 
+                    <raw_text>KDEN 160353Z 15004KT 10SM FEW090 04/M08 A3014 RMK AO2 SLP191 T00441078 $</raw_text>
+                    <station_id>KDEN</station_id>
+                    <observation_time>2020-11-16T03:53:00Z</observation_time>
+                    <latitude>39.85</latitude>
+                    <longitude>-104.65</longitude>
+                    <temp_c>4.4</temp_c>
+                    <dewpoint_c>-7.8</dewpoint_c>
+                    <wind_dir_degrees>150</wind_dir_degrees>
+                    <wind_speed_kt>4</wind_speed_kt>
+                    <visibility_statute_mi>10.0</visibility_statute_mi>
+                    <altim_in_hg>30.138779</altim_in_hg>
+                    <sea_level_pressure_mb>1019.1</sea_level_pressure_mb>
+                    <quality_control_flags>
+                    <auto_station>TRUE</auto_station>
+                    <maintenance_indicator_on>TRUE</maintenance_indicator_on>
+                    </quality_control_flags>
+                    <sky_condition sky_cover="FEW" cloud_base_ft_agl="9000"/>
+                    <flight_category>VFR</flight_category>
+                    <metar_type>METAR</metar_type>
+                    <elevation_m>1656.0</elevation_m>
+                -->
+                <div id="station_id" class="weather-element"></div>
+                <div id="raw_metar" class="weather-element"></div>                
+                <div id="observation_time" class="weather-element"></div>
+                <div id="latitude" class="weather-element"></div>                
+                <div id="longitude" class="weather-element"></div>
+                <div id="temp_c" class="weather-element"></div>
+                <div id="dewpoint_c" class="weather-element"></div>
+                <div id="wind_dir_degrees" class="weather-element"></div>
+                <div id="wind_speed_kt" class="weather-element"></div>
+                <div id="visibility_statute_mi" class="weather-element"></div>
+                <div id="sea_level_pressure_mb" class="weather-element"></div>
+                <div id="sky_condition" class="weather-element"></div>
+                <div id="station_id" class="weather-element"></div>
+                <div id="elevation_m" class="weather-element"></div>                
+                <!-- <p id="metar_xml"></p> -->
             </aside>
             <footer>
                 <h3>Footer</h3>
                 <table id="metar_table" class="w3-table w3-border">
-                    <tr>
+                    <tr id="header_row">
                         <th>Station</th>
                         <th>Lat</th>
                         <th>Lon</th>
