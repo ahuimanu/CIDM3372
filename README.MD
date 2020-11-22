@@ -2,47 +2,49 @@
 
 CSS and JavaScript
 
-# CSS
+NOTE: See the Project folder for code for the final project
+
+## CSS
 
 [CSS in Depth by Keith J. Grant](https://www.manning.com/books/css-in-depth)
 
 [CSS Book code respository](https://github.com/CSSInDepth/css-in-depth)
 
-## Part 1 - Fundamentals (Chapters 1 - 3)
+### Part 1 - Fundamentals (Chapters 1 - 3)
 
 Basics and Box Model
 
-## Part 2 - Mastering Layout (Chapters 4 - 8)
+### Part 2 - Mastering Layout (Chapters 4 - 8)
 
 Mastering layout
 
-### Chapter 4 - Floats
+#### Chapter 4 - Floats
 
 Floats were originally intended to mimic text flowing around a container (usually an image).
 
 They were the only viable tool for flexible layouts for a long time.
 
-### Chapter 5 - Flexbox
+#### Chapter 5 - Flexbox
 
 How containers allow for growing and shrinking.
 
-### Chapter 6 - Grid
+#### Chapter 6 - Grid
 
 Using grid to more precisely divide and specify page-wide layout.
 
-### Chapter 7 - Positioning
+#### Chapter 7 - Positioning
 
 Within containers, further positioning of elements.
 
-### Chapter 8 - Responsive Design
+#### Chapter 8 - Responsive Design
 
 Exercising more control over layout in response to viewport/device properties.
 
-## Part 3 - CSS at Scale (Chapters 9 and 10)
+### Part 3 - CSS at Scale (Chapters 9 and 10)
 
 How to manage CSS as projects increase in scale and scope
 
-### Chapter 9 - Modular CSS
+#### Chapter 9 - Modular CSS
 
 > Modular CSS means breaking the page up into its component parts. These parts should be reusable in multiple contexts, and they shouldn’t directly depend upon one another. The end goal is that changes to one part of your CSS will not produce unexpected effects in another.
 
@@ -61,7 +63,7 @@ How to manage CSS as projects increase in scale and scope
 
 > Your modules should each be responsible for one thing. Our Message module is responsible for making a message noticeable. Our Media module is responsible for positioning an image beside some text. You should be able to concisely summarize its purpose. Some modules will be for layout, others will be for stylistic purposes. When a module tries to do more than one thing, you should consider breaking it into smaller modules.
 
-#### CSS Methodologies
+##### CSS Methodologies
 
 A set of guidelines to help organize your CSS:
 
@@ -70,7 +72,7 @@ A set of guidelines to help organize your CSS:
 * [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/)
 * [Inverted Triangle CSS](https://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
 
-#### General Application
+##### General Application
 
 For your stylesheet:
 
@@ -88,7 +90,7 @@ Summarizing the advice:
 * Group all rules for a module together in your stylesheet.
 * Use a naming convention such as double-hyphens and double-underscores to make your modules’ structure easier to understand at a glance.
 
-### Chapter 10 - Pattern Libraries and Style Guides
+#### Chapter 10 - Pattern Libraries and Style Guides
 
 Eventually, you'll find that your projects start to exhibit common needs and that you develop consistent approaches to addressing these needs.
 
@@ -114,13 +116,13 @@ Some pattern libraries are often called a style guide (or “living style guide�
 * Install KSS: `npm install --save-dev kss`
 
 
-# JavaScript
+## JavaScript
 
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
 
 [JS Book code repository](https://github.com/davidflanagan/jstdg7)
 
-## Chapter 2 Basics and Running Code
+### Chapter 2 Basics and Running Code
 
 Javascript is typically run within a browser as the browser hosts scripts.  Therefore, for basic coding, we have a few options:
 
@@ -130,11 +132,11 @@ Javascript is typically run within a browser as the browser hosts scripts.  Ther
 
 I will demonstrate each.
 
-### Language Basics: Lexical Structures
+#### Language Basics: Lexical Structures
 
 There are some JavaScript basics in terms of structure that are easy to work through.
 
-### Comments
+#### Comments
 
 A comment is any content in a script or page that you don't have interpreted/read by the browser.  They are for documenting code and making notes.
 
@@ -148,7 +150,7 @@ A comment is any content in a script or page that you don't have interpreted/rea
   */
 ```
 
-### Literal Values
+#### Literal Values
 
 We can **hard code** values into our JS code as well
 
@@ -163,7 +165,7 @@ null // Absence of an object
 
 ```
 
-### Identifiers (variable names) and reversed workds/names
+#### Identifiers (variable names) and reversed workds/names
 
 You can use letters, underscores, or dollar signs to start a variable name.  Then, you can use numbers, letters, dollar signs, or underscores:
 
@@ -188,7 +190,7 @@ catch do from let super typeof
 class else function new switch var
 ```
 
-### Unicode provides support for an extended character set
+#### Unicode provides support for an extended character set
 
 We can use symbols and languages other than english for our indentifiers:
 
@@ -203,11 +205,11 @@ We can use unicode escape sequences - by using the hexadecimal value for the uni
 console.log("\ u{ 1F600}"); // Prints a smiley face emoji
 ```
 
-### Semicolons as statement terminators
+#### Semicolons as statement terminators
 
 Although optional, your code is more readable and emphatic if you use them.
 
-## Chapter 3 Types, Values, and Variables
+### Chapter 3 Types, Values, and Variables
 
 This chapter is all about the types of data you store in a variable (identifier), as all identifiers are associated with something you want to save and refer to later.
 
@@ -237,11 +239,11 @@ However, there are some basic categories.
 
 JavaScript handles memory management and object/value disposal (called **Garbage Collection**) for you. Most JavaScript intepreters (called an *Engine*) run in a browser.
 
-### Object-Orientation
+#### Object-Orientation
 
 JavaScript is an Object-Oriented language in that you can specify classes and prototypes from which you may then generate objects.  Then, you can *contain* variables in one place.
 
-### Declaration of Variables
+#### Declaration of Variables
 
 There are, generally, three ways that you declare that you'd like to store a value with an identifier:
 
@@ -255,13 +257,13 @@ There are, generally, three ways that you declare that you'd like to store a val
 
   > David Flanagan - JavaScript: The Definitive Guide - 8th Edition, Page 53
 
-## The Primitive Types
+#### The Primitive Types
 
 The primitive types cover most of the values you'd expect to encounter and store.  Object types are often collections of these values.
 
 JavasScript uses the IEEE 754 standard to hold numbers as 64-bit floating point or 32-bit integer values.
 
-### Separators
+#### Separators
 
 A cool feature of JavaScript - but is not standardized - is the ability to visually separate larger numbers with underscores:
 
@@ -269,11 +271,11 @@ A cool feature of JavaScript - but is not standardized - is the ability to visua
 let billion = 1_000_000_000;
 ```
 
-### Math Object
+#### Math Object
 
 Many basic math functions are provided in the [Math Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
-### BigInt
+#### BigInt
 
 The "Big Int" notation allows you to specify that you'd like a full 64 bits to hold an integer:
 
@@ -288,13 +290,13 @@ let string = "1" + "0". repeat( 100); // 1 followed by 100 zeros.
 BigInt( string) // = > 10n** 100n: one googol
 ```
 
-### Dates
+#### Dates
 
 Since time is considered a continuum, then we measure time and dates using a numeric value of some unit of time since an epoch beginning that is, usually, artibrarily set.  In the computing world, the start of the epoch is either January 1, 1970 (Unix World), or January 1, 1980 for the Microsoft world.  A timestamp is often the number of seconds or milliseconds that have expired since the beginning of the epoch.
 
 [JavaScript Date Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
-## Strings and Text
+#### Strings and Text
 
 JavaScript stores characters as 16-bit unicode using the UTF-16 standard. This makes for some fun things:
 
@@ -305,7 +307,7 @@ euro.length // = > 1: this character has one 16-bit element
 love.length // = > 2: UTF-16 encoding of ❤ is "\ ud83d\ udc99"
 ```
 
-### String Literals
+#### String Literals
 
 You will frequently use strings your your project that you "hard code" as *string literals*.
 
@@ -319,17 +321,17 @@ You will frequently use strings your your project that you "hard code" as *strin
 `" She said 'hi'", he said. `
 ```
 
-### Escape Sequences
+#### Escape Sequences
 ![JavaScript String Escape Sequences](JS-Chapters/images/escape_sequences.PNG)
 ![JavaScript String Escape Sequences](JS-Chapters/images/escape_sequences2.PNG)
 
-### String Objects and API
+#### String Objects and API
 
 There is a broad number of built-in methods and operators for working with strings.
 
 These are all found in the JavaScript [String Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
-### Template Literals for String Interpolation
+#### Template Literals for String Interpolation
 
 Sometimes, you want to format or insert variable values into a strong, the modern JavaScript approach to this is to use *template literals*:
 
@@ -338,7 +340,7 @@ let name = "Bill";
 let greeting = ` Hello ${ name }. `; // creates "Hello Bill."
 ```
 
-### Regular Expressions
+#### Regular Expressions
 
 A regular expression (RegExp) is used to match patterns in strings. Regular expressions are complex and require time and practice to master.
 
@@ -356,7 +358,7 @@ text.replace( pattern, "#") // = > "testing: #, #, #"
 text.split(/\ D +/) // = > [""," 1"," 2"," 3"]: split on nondigits
 ```
 
-## Booleans
+#### Booleans
 
 True and False.
 
@@ -364,12 +366,12 @@ Comparisons:
 
 `===` is to absolutely compare two values and the result of using this operator is `true` or `false`
 
-## null and undefined
+#### null and undefined
 
 ***null*** is used to indicate the absence of an expected object value associated with an identifier/value.
 ***undefined*** suggests that no value has yet been initialed in the memory associated with an identifer/value.
 
-## Symbols as Identifiers
+#### Symbols as Identifiers
 
 We can use a new type in JavaScript called a [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) to serve as an identifier for properties or values.  They are guaranteed to be unique.
 
@@ -387,19 +389,19 @@ o[symname] // = > 2: access the symbol-named property
 
 These are not necessary to use, but are perhaps an interesting development in the language.
 
-## Global Object
+#### Global Object
 
 The built-in objects in JavaScript, all types, and several useful utility methods are all contained in the [Global Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects).
 
-## Type Conversions
+#### Type Conversions
 
 It is useful to know what JavaScript's expected behaviors are when you want to convert between the basic primitive types in JavaScript.
 
 ![JavaScript Type Conversions](JS-Chapters/images/type_conversions.PNG)
 
-### Scope
+#### Scope
 
-Variable have a scope, which defines both visibility and lifetime of the availability of the *idetifier* and the value(s) it refers to.  You can usually work out scope by what is contained within a block - defined by curly-braces `{` and `}`.
+Variables have a scope, which defines both visibility and lifetime of the availability of the *idetifier* and the value(s) it refers to.  You can usually work out scope by what is contained within a block - defined by curly-braces `{` and `}`.
 
 Scopes:
 
@@ -407,7 +409,7 @@ Scopes:
 * block
 * global
 
-### Descructured Assignment
+#### Descructured Assignment
 
 Take a scruture, like an array, and split it out for storage in a number of individual assignment:
 
@@ -418,14 +420,14 @@ console.log(y);
 console.log(z);
 ```
 
-## Chapter 4 Expressions and Operators
+### Chapter 4 Expressions and Operators
 
 The principle point of programming is to transform values based on some goals, rules, or objectives.  The evaluation and transformation of values is accomplished using:
 
 * **expressions** - an expression is the evaluation of a phrase of JavaScript such that only a single value remains as a result.
 * **operators** - the evaluation of operands to yield a single outcome, which is typically mathematical in nature and yields numeric or boolean values.
 
-### Primary Expessions
+#### Primary Expessions
 
 Since the point of an expression is to realize a single value, some valid expressions are constituted by the simple presence of a primary expression value:
 
@@ -441,7 +443,7 @@ Some reserved words are primary expressions
 * ***null***
 * ***this***
 
-### Object and Array Initializers
+#### Object and Array Initializers
 
 These are expressions designed to use *object literals* or *array literals* to provide values for an object or array:
 
@@ -459,7 +461,7 @@ let rectangle = {
 };
 ```
 
-### Function Definition Expressions
+#### Function Definition Expressions
 
 When you assocate a function with an identifer, the definition/structure of the function is an expression (as it returns the function as the value to be stored):
 
@@ -489,7 +491,7 @@ a[2]["1"] // value is 6: element at index 1 of expression arr[2]
 a[0]. x // value is 1: property x of expression arr[0]
 ``` 
 
-### Conditional (nullable) Access Expression
+#### Conditional (nullable) Access Expression
 
 In case you trying to access a null or undefined property, you have nullable verions of the above pattern:
 
@@ -503,7 +505,7 @@ a.b?. c.d // = > undefined
 // without the conditional, trying to access a null value would throw an error
 ```
 
-### Invocation Expression
+#### Invocation Expression
 
 Calling a function or method, using the parentheses, is an expression as well as functions and methods, by definition, return a single value.
 
@@ -532,7 +534,7 @@ function square( x, log) { // The second argument is an optional function
 }
 ```
 
-### Object Creation Expessions
+#### Object Creation Expessions
 
 When we use the new operator to invoke a contructor that initializes a new object from a class:
 
@@ -540,7 +542,7 @@ When we use the new operator to invoke a contructor that initializes a new objec
 let thingie   = new Object(); 
 let thepoint  = new Point( 2,3);
 ```
-### Operators
+#### Operators
 
 The [JavaScript reference documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) actually covers quite a bit of the material covered here.  
 
@@ -554,7 +556,7 @@ Here are important components to remember when using operators:
 * **Associativity**: The flow through the operator is either left-to-right or right-to-left: `let y = 3; //assignment is right-to-left`
 * **Order of Operation**: The combination of precedence and associativity determine the expected execution of a complex expression: `let w = x + y * z;`
 
-### The Principle Operator Categories
+#### The Principal Operator Categories
 
 There are a number of categories of operators and expressions enabled by them.  All can be found in the [Expressions and Operators reference documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators):
 
@@ -584,7 +586,7 @@ There are a number of categories of operators and expressions enabled by them.  
 * Void: `void`
   * Signifies the absence of a return value from a function.
 
-## Chapter 5 Expressions and Operators
+### Chapter 5 Expressions and Operators
 
 As programming evolved over the years, it because necessary to structure logic in predictable and comprehensible ways.  Control structures arose and these are comprised of *statements*.  Flanagan describes these thusly:
 
@@ -619,7 +621,7 @@ The principle JavaScript control structures/statements are:
 
   While Chapter 5 has good coverage of these topics, the above links go to the [JavaScript documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript) at the [MDN](https://developer.mozilla.org/en-US/).
 
-  ### Declarations
+  #### Declarations
 
   There are important declarative keywords that Flanagan groups into statements.
 
@@ -631,11 +633,11 @@ The principle JavaScript control structures/statements are:
   * [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
   * [export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
 
-## Chapter 6 Objects
+### Chapter 6 Objects
 
 Objects are fundamental to the JavaScript language as they provide an aggregate structure for multiple values (primitive or objects) where we can store and retrieve these values by name.  The aggregated values are referred to as ***properties*** of the object.
 
-### Object Literals
+#### Object Literals
 
 The simplest way to understand objects is to review examples of object literals:
 
@@ -663,7 +665,7 @@ let book = {
 };
 ```
 
-### Instantiating Defined Objects (often from a `class`)
+#### Instantiating Defined Objects (often from a `class`)
 
 ``` javascript
 let o = new Object(); // Create an empty object: same as {}. 
@@ -672,7 +674,7 @@ let d = new Date(); // Create a Date object representing the current time
 let r = new Map(); // Create a Map object for key/ value mapping
 ```
 
-### Using prototypes
+#### Using prototypes
 
 In its earliest days, JavaScript used prototypes to define objects that could then be instatiated as though from a class.
 
@@ -685,7 +687,7 @@ let o1 = Object.create({ x: 1, y: 2});  // o1 inherits properties x and y.
 let z = o1.x + o1.y;                    // = > 3
 ```
 
-### Getting and Setting Properties
+#### Getting and Setting Properties
 
 We can use either the dot (`.`) or square braces (`[]`') to access properties from an object:
 
@@ -694,7 +696,7 @@ object.property
 object["property"]    // this implies that an object is an associative array
 ```
 
-### Prototype Inheritance
+#### Prototype Inheritance
 
 JavaScript objects have a set of “own properties,” and they also inherit a set of properties from their prototype object.
 
@@ -726,11 +728,11 @@ let final = last.toString();
 last.x + last.y 
 ```
 
-### JSON Serelization of Objects
+#### JSON Serelization of Objects
 
 The [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) was developed to help [serialize](https://developer.mozilla.org/en-US/docs/Glossary/Serialization) JavaScript objects from volatile to non-volatile memory.
 
-### Object Methods
+#### Object Methods
 
 [Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) provides a few universal object methods for inheritance and overriding.
 
@@ -741,13 +743,13 @@ The [JavaScript Object Notation (JSON)](https://developer.mozilla.org/en-US/docs
 
 There are also a variety of static methods and other properties to assist in working with objects in JavaScript.
 
-## Chapter 7 Arrays
+### Chapter 7 Arrays
 
 From the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array):
 
 > The JavaScript Array class is a global object that is used in the construction of arrays; which are high-level, list-like objects.  Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array, JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them. In general, these are convenient characteristics; but if these features are not desirable for your particular use, you might consider using typed arrays.
 
-### Array Creation
+#### Array Creation
 
 As with objects, the most straight-forward method for creating an array is to use an array literal:
 
@@ -810,7 +812,7 @@ let original = [1, 2, 3, 4 , 5];
 let copy = Array.from(original);
 ```
 
-### Accessing and Mutating
+#### Accessing and Mutating
 
 We use the square braces `[]` to read from an array index position and write to that same position depending on which operations are performed in conjunction with the square braces:
 
@@ -825,7 +827,7 @@ a[i + 1] = "hello"; // Write element 3
 a[a[i]] = a[0]; // Read elements 0 and 2, write element 3
 ```
 
-### Sparse Arrays
+#### Sparse Arrays
 
 A quirk of the Array in JavaScript (beside that it really should be called a List) is the ability to allocate elements noncontiguously.
 
@@ -837,11 +839,11 @@ a = [];                 // Create an array with no elements and length = 0.
 a[1000] = 0;           // Assignment adds one element but sets length to 1001. This is weird.
 ```
 
-### Length
+#### Length
 
 The length property will report how many elements are in the array and, regardless if the array is sparse of dense, the length does not suffer the [off-by-one issue](https://en.wikipedia.org/wiki/Off-by-one_error) of [zero-based indexing](https://en.wikipedia.org/wiki/Zero-based_numbering).
 
-### Adding and Removing Records in an Array
+#### Adding and Removing Records in an Array
 
 Since an array in JavaScript is really a list that can grow, shrink, and develop "gaps," then mechanisms for modifying the array are straightfoward:
 
@@ -863,13 +865,13 @@ That said, there are some methods for adding, removing, and re-arranging element
 * [shift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) - The `shift()` method removes the first element from an array and returns that removed element. This method changes the length of the array.
 * [unshift()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) - The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
 
-### Iterating and Iterable
+#### Iterating and Iterable
 
 JavaScript is actually standardized as [ECMAScript](https://www.ecma-international.org/publications/standards/Ecma-262.htm) and standardizes the [iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) that enable the ability to iterate (move through) a list or set of values in order to evaluate them algorithmically.  I continue to refer to the MDN documentation as JavaScript was originally introduce by [Netscape](https://en.wikipedia.org/wiki/Netscape), which is the predecessor to the [Mozilla Foundation](https://foundation.mozilla.org/en/) which brings us the [Firefox](https://www.mozilla.org/en-US/) web browser.
 
 A number of the iteration/loop structures available in the language work with these iteration protocols.
 
-#### `for of` loop
+##### `for of` loop
 
 ``` javascript
 let words = ["mary", "had", "a", "little", "lamb"];
@@ -903,7 +905,7 @@ for(let i = 0; i < words.length; i++) {
 }
 ```
 
-### Multi-dimentional arrays
+#### Multi-dimentional arrays
 
 JavaScript does not support true multidimensional arrays, but you can approximate them with arrays of arrays. To access a value in an array of arrays, simply use the [] operator twice. 
 
@@ -922,7 +924,7 @@ for( let row = 0; row < table.length; row++ ) {
 }
 ```
 
-### Array Methods
+#### Array Methods
 
 There are many methods built in with arrays to assist in working with an array.
 
@@ -986,7 +988,7 @@ s.charAt( 0) // = > "t"
 s[ 1] // = > "e"
 ```
 
-## Chapter 8 Functions
+### Chapter 8 Functions
 
 From Flanagan:
 
@@ -1004,7 +1006,7 @@ From Flanagan:
 
 >One of the important things to understand about function declarations is that the name of the function becomes a variable whose value is the function itself. 
 
-### Arrow Functions
+#### Arrow Functions
 
 These are a compact form that creates an anonymous function where the function's expression is what is desired for use:
 
@@ -1012,7 +1014,7 @@ These are a compact form that creates an anonymous function where the function's
 const sum = (x, y) = > { return x + y; };
 ```
 
-### Nested Functions
+#### Nested Functions
 
 Since functions are values that can be stored (and called), they can be nested:
 
@@ -1023,16 +1025,16 @@ function hypotenuse( a, b) {
 }
 ```
 
-### Function Invokation
+#### Function Invokation
 
 Functions define behavior that is not executed until the function is "called" or invoked.
 
-### Function arguments and parameters
+#### Function arguments and parameters
 
 * When a function is invoked, and values are expected as inputs to the function, it is said that we pass ***arguments*** to the function.
 * When a function is defined, we specify the ***parameters*** that a function will accept as inputs.
 
-## Chapter 9 Classes
+### Chapter 9 Classes
 
 Classes provide an opportunity to create an "Object Blueprint" from a class specification.
 
@@ -1058,11 +1060,11 @@ class CISStudent extends Student {
 }
 ```
 
-## Chapter 10 - Modules
+### Chapter 10 - Modules
 
 >The goal of modular programming is to allow large programs to be assembled using modules of code from disparate authors and sources and for all of that code to run correctly even in the presence of code that the various module authors did not anticipate. As a practical matter, modularity is mostly about encapsulating or hiding private implementation details and keeping the global namespace tidy so that modules cannot accidentally modify the variables, functions, and classes defined by other modules.
 
-### Modularization Optiosn
+#### Modularization Optiosn
 
 We can achieve modularity in our designs or by using either Node.js or ES6 approaches:
 
@@ -1121,7 +1123,7 @@ import { render as renderImage } from "./ imageutils.js";
 import { render as renderUI } from "./ ui.js";
 ```
 
-## Chapter 11 JavaScript Standard Library
+### Chapter 11 JavaScript Standard Library
 
 There a number of functions and classes built into JavaScript that are considered part of a "standard library" for the language:
 
@@ -1138,13 +1140,13 @@ There a number of functions and classes built into JavaScript that are considere
 
 I will not cover these in depth, but Flanagan does.  However, we will undoubtedly use them along the way.
 
-## Chapter 13 Asynchronous JavaScript
+### Chapter 13 Asynchronous JavaScript
 
 This chapter is very important as it goes hand-in-hand with subsequent chapters on DOM manipulation.  All of the asynchronous techniques here are the foundations of many of the techniques from Chapters 15 (client-side) and 16 (server-side).
 
 The easiest to work with is the various timers built into JavaScript.
 
-### Timers
+#### Timers
 
 The simplest timer is the `setTimeout` function:
 
@@ -1163,7 +1165,7 @@ function stopCheckingForUpdates() {
 }
 ```
 
-### Events
+#### Events
 
 Another form of asynchronous behavior is to respond to run-time events, usually fired by the user of a page in the browser:
 
@@ -1175,7 +1177,7 @@ let okay = document.querySelector('# confirmUpdateDialog button.okay');
 okay.addEventListener(' click', applyUpdate); 
 ```
 
-### Network latency and events
+#### Network latency and events
 
 Another reason for asynchronous JavaScript is the natural latency and periodic nature of network traffic events:
 
@@ -1203,7 +1205,7 @@ function getCurrentVersionNumber( versionCallback) { // Note callback argument
 }
 ```
 
-### Promises
+#### Promises
 
 Promises coordinate asynchronous callbacks so that when a response to a request is received sometime after the request, that response fulfills a "promise" to call the designated function so that it is possible to evaluate and process a response to the request.
 
@@ -1220,7 +1222,7 @@ getJSON( url).then( jsonData = > {
 
 Notice that `then` is sort of a response to an implied `if` that says, when this *request* receives a *response*, then peform this action over here.
 
-### async and await
+#### async and await
 
 Another development in JavaScript is that provides a Promise-like behavior with keywords used in code that looks synchronous.  C# and Python also have similar approaches.
 
@@ -1236,7 +1238,7 @@ async function getHighScore() {
 
 The above code indicates that portions of the `getHighScore` function, indicated by the `async` keyword, will go off and perform some work while not stopping the entire programming, which is what is indicated by the `await` keyword.
 
-# Chapter 15 JavaScript in Web Browsers
+### Chapter 15 JavaScript in Web Browsers
 
 From Flanagan:
 
@@ -1256,4 +1258,3 @@ We will go long, and supplement from other sources, on each of the these areas:
 * Store data on the user’s computer (§ 15.12) 
 * Perform concurrent computation with threads (§ 15.13)
 
-Much much more to come here soon.
