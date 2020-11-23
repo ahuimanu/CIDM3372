@@ -2,8 +2,7 @@ const axios = require('axios')
 const xml2js = require('xml2js')
 const parser = new xml2js.Parser()
 
-const METAR_URL = "http://metar.vatsim.net/metar.php";
-const WEATHER_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2";
+const ADDS_WEATHER_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=2";
 const ADDS_STATION_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=stations&requestType=retrieve&format=xml"
 
 class SkyCondition {
@@ -23,18 +22,13 @@ class SkyCondition {
 class METAR {
     /*
         https://aviationweather.gov/dataserver/fields?datatype=metar
-
-        snow_in	                        Snow depth on the ground	float	in
-        vert_vis_ft	                    Vertical Visibility	integer	ft
-        metar_type	                    METAR or SPECI	string	
-        elevation_m	                    The elevation of the station that reported this METAR	float	meters    
     */
 
     constructor(raw_text, station_id, observation_time, latitude, longitude, temp_c, dewpoint_c,
                 wind_dir_degrees, wind_speed_kt, wind_gust_kt, visibility_statute_mi, altim_in_hg,
                 sea_level_pressure_mb, quality_control_flags, wx_string, sky_condition, flight_category,
                 three_hr_pressure_tendency_mb, maxT_c, minT_c, maxT24hr_c, minT24hr_c,
-                precip_in, pcp6hr_in, pcp6hr_in, pcp24hr_in, snow_in, vert_vis_ft, 
+                precip_in, pcp3hr_in, pcp6hr_in, pcp24hr_in, snow_in, vert_vis_ft, 
                 metar_type, elevation_m) {
                     
                     /* raw_text: The raw METAR (string)	*/
@@ -131,97 +125,165 @@ class METAR {
 
                     /* pcp24hr_in: Liquid precipitation from the past 24 hours. 0.0005 in = trace precipitation (float in) */
                     this.pcp24hr_in = pcp24hr_in
+
+                    /* snow_in: Snow depth on the ground (float in) */
                     this.snow_in = snow_in
+
+                    /* vert_vis_ft: Vertical Visibility (integer ft) */
                     this.vert_vis_ft = vert_vis_ft
+                    
+                    /* metar_type: METAR or SPECI (string) */                    
                     this.metar_type = metar_type
+                    
+                    /* elevation_m: The elevation of the station that reported this METAR (float meters) */
                     this.elevation_m = elevation_m
     }
 
+    static parseMETARFromJSON(json) {
+
+        console.log(json)
+
+        const station_id = null
+        if(json.response.data[0].METAR[0].station_id[0] != null) {
+            station_id = json.response.data[0].METAR[0].station_id[0]
+        }
+
+        const raw_metar = null
+        if(json.response.data[0].METAR[0].raw_text[0] != null){
+            raw_metar = json.response.data[0].METAR[0].raw_text[0]
+        }
+        
+        const latitude = null
+        if(json.response.data[0].METAR[0].latitude[0] != null){
+            latitude = json.response.data[0].METAR[0].latitude[0]
+        }
+
+        const longitude = null
+        if(json.response.data[0].METAR[0].longitude[0] != null){
+            longitude = json.response.data[0].METAR[0].longitude[0]
+        }
+
+        const temp_c = null
+        if(json.response.data[0].METAR[0].temp_c[0] != null){
+            temp_c = json.response.data[0].METAR[0].temp_c[0]
+        }
+
+        const elevation_m = null
+        if(json.response.data[0].METAR[0].elevation_m[0] != null){
+            elevation_m = json.response.data[0].METAR[0].elevation_m[0]
+        }
+
+        //return json
+    }
+
     toString(){
-        return (`STATE: ${this.cd} | STATION: ${this.station} | ICAO: ${this.icao} |` +
-                `IATA: ${this.iata} | LAT: ${this.lat} | LON: ${this.lon} | ELEV: ${this.elev}`)
+        return (`STATION: ${this.station_id} | LAT: ${this.latitude} | LON: ${this.longitude} | ELEV: ${this.elevation_m}`)
     }
 
 }
 
 class Station {
     /*
-        station_id	    The 4-letter station specifier	string
-        wmo_id	        Four-letter WMO Id for the station, please refer to global WMO country information, for WMO codes	string
-        latitude	    The latitude in decimal degrees	float (decimal) degrees
-        longitude	    The longitude in decimal degrees	float (decimal) degrees
-
-        elevation_m	    The elevation of the station (above mean sea-level)	float meters MSL
-        site	        The "common" name/human-readable name of the station	string
-        state	        The two-letter abbreviation for the U.S. state or Canadian province	string
-        country	        The two-letter country abbreviation	string
-        site_type	    The station type, which can be a combination of the following: METAR | rawinsonde | TAF | NEXRAD | wind_profiler | WFO_office | SYNOPS	string
+        https://aviationweather.gov/dataserver/fields?datatype=station    
     */
+
+    constructor(station_id, wmo_id, latitude, longitude, elevation_m, site, country, site_type) {
+        /* station_id: The 4-letter station specifier (string) */
+        this.station_id = station_id
+        
+        /* wmo_id: Four-letter WMO Id for the station, please refer to global WMO country information, for WMO codes (string) */
+        this.wmo_id = wmo_id
+        
+        /* latitude: The latitude in decimal degrees (float (decimal) degrees) */
+        this.latitude = latitude
+
+        /* longitude: The longitude in decimal degrees (float (decimal) degrees) */
+        this.longitude = longitude
+
+        /* elevation_m: The elevation of the station (above mean sea-level) (float meters MSL) */
+        this.elevation_m = elevation_m
+
+        /* site: The "common" name/human-readable name of the station (string) */
+        this.site = site
+
+        /* state: The two-letter abbreviation for the U.S. state or Canadian province (string) */
+        this.state = state
+
+        /* country: The two-letter country abbreviation	(string) */
+        this.country = country
+
+        /* site_type: The station type, which can be a combination of the following: 
+            METAR | rawinsonde | TAF | NEXRAD | wind_profiler | WFO_office | SYNOPS	(string) */
+        this.site_type = site_type
+        
+    }
+
+    static parseStationFromJSON(json) {
+        console.log(json)
+
+        //return json
+    }
+
 }
 
-let stationsList = null
+const parseMETARXML = (xml) => {
 
-const parseMETARXml = (xml) => {
-
-    let metar_data
+    let adds_data
 
     parser.parseString(xml, (err, result) => {
         if(err){
             throw err;
         }
         else{
-            metar_data = result
+            adds_data = result
         }
     })
 
-    return metar_data;
+    return adds_data;
 }
 
-/* get VATSIM station metar */
-const getVATSIMStationMETAR = (station) => {
+/* Get NOAA/ADDS station METAR */
+const getNOAAADDSSMETAR = async (stationString) => {
+    
+    const url = `${ADDS_WEATHER_URL}&stationString=${stationString}`
+    console.log(`ADDS WEATHER URL: ${url}`)
 
-    console.log(`RECV: ${station}`)
+    let parsed = null
 
-    let metar 
-    //VATSIM data pull
-    axios.get(`${METAR_URL}?id=${station}`)
+    await axios.get(url)
         .then((response) => {
-            metar = response.data
-            console.log(metar)
-            res.send(metar)
+            // console.log(`ADDS WEATHER RESPONSE DATA: ${response.data}`)  
+            let metarxml = response.data
+            parsed = parseMETARXML(metarxml)
+            // console.log(`ADDS WEATHER PARSED DATA: ${parsed}`)
         })
         .catch((error) => {
             console.log(error);
         });
+
+    return Promise.resolve(parsed)
 }
 
-const getNOAAADDSStationMETAR = (station) => {
+const getNOAAADDSStation = async (stationString) => {
     
     const url = `${ADDS_STATION_URL}&stationString=${stationString}`
+    console.log(`ADDS STATION URL: ${url}`)    
 
-    axios.get(url)
+    let parsed = null
+
+    await axios.get(url)
         .then((response) => {
+            // console.log(`ADDS STATION RESPONSE DATA: ${response.data}`)
             let metarxml = response.data
-            let parsed = parseMETARXml(metarxml)
-            res.json(parsed)
+            parsed = parseMETARXML(metarxml)
+            // console.log(`ADDS STATION PARSED DATA: ${parsed}`)
         })
         .catch((error) => {
             console.log(error);
         });
+
+    return Promise.resolve(parsed)
 }
 
-const getNOAAADDSStation = (station) => {
-    
-    const url = `${WEATHER_URL}&stationString=${stationString}`
-
-    axios.get(url)
-        .then((response) => {
-            let metarxml = response.data
-            let parsed = parseMETARXml(metarxml)
-            res.json(parsed)
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-
+exports.getNOAAADDSSMETAR = getNOAAADDSSMETAR
+exports.getNOAAADDSStation = getNOAAADDSStation
