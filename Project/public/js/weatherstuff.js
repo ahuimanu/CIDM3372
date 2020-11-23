@@ -3,6 +3,10 @@ const METAR_VATSIM_URL = "http://localhost:3000/metar/";
 
 const ADDS_METAR_URL = "http://localhost:3000/addsmetar/"
 const ADDS_STATION_URL = "http://localhost:3000/addsstation/"
+
+const SUNRISE_AND_SUNSET_URL = "http://localhost:3000/sunrise_sunset/"
+
+//const SUNRISE_SUNSET_URL = `https://api.sunrise-sunset.org/json?lat=${metar.latitude[0]}&lng=${metar.longitude[0]}`
 // const WEATHER_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KDEN%20KSEA%20PHNL&hoursBeforeNow=2";
 
 // Define recursive function to print nested values
@@ -15,6 +19,8 @@ function printValues(obj) {
         };
     }
 };
+
+
 
 const validateStation = async (station) => {
     return await fetch(`${STATION_URL}isvalid/${station}`)
@@ -74,10 +80,7 @@ const getMETAR = () => {
 const updateWeatherOutput = (json, site) => {
 
     // extract metar collection
-    const metar = json.response.data[0].METAR[0]    
-
-    // <div id="flight-conditions" class="weather-element"></div>                
-    // <div id="weather-icon" class="weather-element"></div>    
+    const metar = json.response.data[0].METAR[0]
 
     // <div id="station_id" class="weather-element"></div>
     //station id
@@ -176,7 +179,6 @@ const updateWeatherOutput = (json, site) => {
 
     // <div id="sky_condition" class="weather-element"></div>
     // SKY CONDITION
-
     let sky_condition_output = `<strong>SKY COND:</strong><br>`
     const sky_condition_element = document.querySelector('#sky_condition')
 
@@ -188,6 +190,27 @@ const updateWeatherOutput = (json, site) => {
         sky_condition_element.innerHTML = sky_condition_output
     }
 
+    // <div id="flight_category" class="weather-element"></div>                
+    const flight_category = metar.flight_category[0];
+    let flight_category_output = null
+    switch(flight_category){
+        case 'VFR':
+            flight_category_output = `<strong><span class="vfr-flight-category">${flight_category}</strong>`
+            break;
+        case 'MVFR':
+            flight_category_output = `<strong><span class="mvfr-flight-category">${flight_category}</strong>`            
+            break;
+        case 'IFR':
+            flight_category_output = `<strong><span class="ifr-flight-category">${flight_category}</strong>`            
+            break;
+        case 'LIFR':
+            flight_category_output = `<strong><span class="lifr-flight-category">${flight_category}</strong>`            
+            break;
+    }
+    const flight_category_element = document.querySelector('#flight_category')
+    flight_category_element.innerHTML = flight_category_output
+
+    // <div id="weather_icon" class="weather-element"></div>    
 
     // RECENT TABLE
     //check to see if the number of rows is 5 or less
@@ -213,6 +236,32 @@ const updateWeatherOutput = (json, site) => {
         var rawMETARCell = row.insertCell(3)
         rawMETARCell.innerHTML = `${raw_metar}`
     }
+}
+
+const selectWeatherIcon = async (json) => {
+
+    // weather icons
+    let weather_icon_img_src = "temp.jpg"
+    let weather_icon_img_alt = "temp"    
+
+    // extract metar collection
+    const metar = json.response.data[0].METAR[0]
+
+    // get sunrise and sunset info and then do weather operations
+    
+
+    
+    
+    //check for the presence of clouds and gusts
+    if(metar.sky_condition != undefined && metar.wind_gust_kt)
+    {
+        //it is clear skies
+        weather_icon_output = ``
+    }
+    
+
+    let weather_icon_output = `<img src="${weather_icon_img_src}" alt="${weather_icon_img_alt}" class="w3-image">`
+
 }
 
 /* handle enter on the input box */

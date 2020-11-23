@@ -18,3 +18,13 @@ This project obtains weather information from NOAA and utilizes mapping capabili
 ## Your Task
 
 Your task is to complete the front-end with respect to some styling and all of the JavaScript that makes the front-end work.
+
+### Creating Node Modules
+
+To handle various backend aspects, I've created a set of node modules:
+
+* station-utils - to read the NOAA stations.txt file
+* weather-utils - to read the NOAA/ADDS data service
+* sunrise-sunset-utils - to read the sunrise-sunset.org free api
+
+Some guidance on creating node modules can be found here: [How To Create a Node.js Module](https://www.digitalocean.com/community/tutorials/how-to-create-a-node-js-module)
