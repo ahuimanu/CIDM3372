@@ -28,3 +28,13 @@ To handle various backend aspects, I've created a set of node modules:
 * sunrise-sunset-utils - to read the sunrise-sunset.org free api
 
 Some guidance on creating node modules can be found here: [How To Create a Node.js Module](https://www.digitalocean.com/community/tutorials/how-to-create-a-node-js-module)
+
+### Useful Resources for the NodeJS backend
+
+* [NOAA Aviation Digital Data Service](https://aviationweather.gov/adds/)
+* [TDS: METAR Field Descriptions](https://www.aviationweather.gov/dataserver/fields?datatype=metar)
+* [Static METAR Plots data](https://www.aviationweather.gov/metar/help?page=plot#fltcat)
+* [METAR and text symbol matching](https://www.aviationweather.gov/docs/metar/wxSymbols_anno2.pdf)
+* [Symbol and METAR Code table](https://www.aviationweather.gov/metar/symbol)
+* [NOAA Forecase Icons](https://www.weather.gov/forecast-icons)
+* [Sunrise/Sunset API](https://sunrise-sunset.org/api)
