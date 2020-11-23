@@ -64,79 +64,161 @@ const getMETAR = () => {
                     .then(json => {
 
                         // printValues(json)
-            
-                        //station id
-                        const station_id = json.response.data[0].METAR[0].station_id[0]
-                        const station_id_output = `<strong>STATION:</strong> ${station_id}`
-                        const station_id_element = document.querySelector('#station_id')
-                        station_id_element.innerHTML = station_id_output
-                        
-                        //raw metar
-                        const raw_metar = json.response.data[0].METAR[0].raw_text[0]
-                        const raw_metar_output = `<strong>METAR:</strong> ${raw_metar}`
-                        const raw_metar_element = document.querySelector('#raw_metar')
-                        raw_metar_element.innerHTML = raw_metar_output
-            
-                        //latitude
-                        const latitude = json.response.data[0].METAR[0].latitude[0]
-                        const latitude_output = `<strong>LAT:</strong> ${latitude}`
-                        const latitude_element = document.querySelector('#latitude')
-                        latitude_element.innerHTML = latitude_output
-            
-                        //longitude            
-                        const longitude = json.response.data[0].METAR[0].longitude[0]
-                        const longitude_output = `<strong>LAT:</strong> ${longitude}`
-                        const longitude_element = document.querySelector('#longitude')
-                        longitude_element.innerHTML = longitude_output
-
-                        // move the map to this new position
-                        const zoom = 11;            
-                        mymap.flyTo([latitude, longitude], zoom);
-            
-                        // set coords at top of page
-                        const headtext = document.querySelector('#headertext');
-                        headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
-
-                        //temp in c
-                        const temp_c = json.response.data[0].METAR[0].temp_c[0];
-                        const temp_f = CtoF(temp_c)
-                        const temp_c_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
-                        const temp_c_element = document.querySelector('#temp_c')
-                        temp_c_element.innerHTML = temp_c_output
-
-
-                        //check to see if the number of rows is 5 or less
-                        const metarTableElement = document.querySelector('#metar_table')
-                        const rowCount = metarTableElement.rows.length
-
-                        if(rowCount > 6)
-                        {
-                            metarTableElement.deleteRow(rowCount - 1)
-                        } else {
-
-                            const row = metarTableElement.insertRow(1)
-
-                            var stationIdCell = row.insertCell(0)
-                            stationIdCell.innerHTML = `${station_id}`
-
-                            var latitudeCell = row.insertCell(1)
-                            latitudeCell.innerHTML = `${latitude}`
-
-                            var longitudeCell = row.insertCell(2)
-                            longitudeCell.innerHTML = `${longitude}`
-
-                            var rawMETARCell = row.insertCell(3)
-                            rawMETARCell.innerHTML = `${raw_metar}`
-                        }
+                        updateWeatherOutput(json, site)
                         
                 })
             }
         })
 }
 
+const updateWeatherOutput = (json, site) => {
+
+    // extract metar collection
+    const metar = json.response.data[0].METAR[0]    
+
+    // <div id="flight-conditions" class="weather-element"></div>                
+    // <div id="weather-icon" class="weather-element"></div>    
+
+    // <div id="station_id" class="weather-element"></div>
+    //station id
+    const station_id = metar.station_id[0]
+    const station_id_output = `<strong>STATION:</strong> ${station_id}`
+    const station_id_element = document.querySelector('#station_id')
+    station_id_element.innerHTML = station_id_output
+
+    // <div id="observation_time" class="weather-element"></div>
+    const observation_time = metar.observation_time[0]
+    const observation_time_output = `<strong>OBSERVED:</strong> ${observation_time}`
+    const observation_time_element = document.querySelector('#observation_time')
+    station_id_element.innerHTML = observation_time_output
+
+    // <div id="raw_metar" class="weather-element"></div>
+    //raw metar
+    const raw_metar = metar.raw_text[0]
+    const raw_metar_output = `<strong>METAR:</strong> ${raw_metar}`
+    const raw_metar_element = document.querySelector('#raw_metar')
+    raw_metar_element.innerHTML = raw_metar_output
+
+    // <div id="latitude" class="weather-element"></div>
+    //latitude
+    const latitude = metar.latitude[0]
+    // const latitude_output = `<strong>LAT:</strong> ${latitude}`
+    // const latitude_element = document.querySelector('#latitude')
+    // latitude_element.innerHTML = latitude_output
+
+    // <div id="longitude" class="weather-element"></div>
+    //longitude            
+    const longitude = metar.longitude[0]
+    // const longitude_output = `<strong>LON:</strong> ${longitude}`
+    // const longitude_element = document.querySelector('#longitude')
+    // longitude_element.innerHTML = longitude_output
+
+    // MAP
+    // move the map to this new position
+    const zoom = 11;            
+    mymap.flyTo([latitude, longitude], zoom);
+
+    // set coords at top of page
+    const headtext = document.querySelector('#headertext');
+    headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
+
+    // <div id="temp" class="weather-element"></div>    
+    //temp
+    const temp_c = metar.temp_c[0];
+    const temp_f = CtoF(temp_c)
+    const temp_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
+    const temp_element = document.querySelector('#temp')
+    temp_element.innerHTML = temp_output
+
+    // <div id="dewpoint" class="weather-element"></div>    
+    //dewpoint
+    const dewpoint_c = metar.dewpoint_c[0];
+    const dewpoint_f = CtoF(dewpoint_c)
+    const dewpoint_output = `<strong>DEWPOINT:</strong> ${dewpoint_c} C (${dewpoint_f} F)`
+    const dewpoint_element = document.querySelector('#dewpoint')
+    dewpoint_element.innerHTML = dewpoint_output
+
+    // <div id="wind" class="weather-element"></div>    
+    //wind
+    const wind_dir_degrees = metar.wind_dir_degrees[0]
+    const wind_speed_kt = metar.wind_speed_kt[0]
+    let wind_output = null    
+
+    //check for gusts
+    let wind_gust_kt = null
+    if(metar.wind_gust_kt != undefined){
+        wind_gust_kt = metar.wind_gust_kt[0]
+        wind_output = `<strong>WIND:</strong> ${wind_dir_degrees} deg at ${wind_speed_kt} kts, gust ${wind_gust_kt} kts`
+        console.log(`WIND GUST IS IN THE REPORT: ${wind_gust_kt}`)
+    } else {
+        wind_output = `<strong>WIND:</strong> ${wind_dir_degrees} deg at ${wind_speed_kt} kts`
+    }
+    const wind_element = document.querySelector('#wind')
+    wind_element.innerHTML = wind_output
+
+    
+    // <div id="pressure" class="weather-element"></div>
+    const altim_in_hg = metar.altim_in_hg[0].substring(0,5)
+    const sea_level_pressure_mb = metar.sea_level_pressure_mb[0]
+    let pressure_output = null
+
+    // check if a US station - checking 50 states for now
+    // TODO: look up territories
+    if(metar.station_id[0].startsWith("K") || 
+       metar.station_id[0].startsWith("PA") || 
+       metar.station_id[0].startsWith("PH")){
+        pressure_output = `<strong>PRESSURE:</strong> ${altim_in_hg} inHg (${sea_level_pressure_mb} hPa)`
+    } else {
+        pressure_output = `<strong>PRESSURE:</strong> ${sea_level_pressure_mb} hPa (${altim_in_hg} inHg)`
+    }
+    const pressure_element = document.querySelector('#pressure')
+    pressure_element.innerHTML = pressure_output
+
+    // <div id="sky_condition" class="weather-element"></div>
+    // SKY CONDITION
+
+    let sky_condition_output = `<strong>SKY COND:</strong><br>`
+    const sky_condition_element = document.querySelector('#sky_condition')
+
+    if(metar.sky_condition != undefined)
+    {
+        metar.sky_condition.forEach(sc => {
+            sky_condition_output += `${sc.$.sky_cover} at ${sc.$.cloud_base_ft_agl} ft AGL<br>`
+        })
+        sky_condition_element.innerHTML = sky_condition_output
+    }
+
+
+    // RECENT TABLE
+    //check to see if the number of rows is 5 or less
+    const metarTableElement = document.querySelector('#metar_table')
+    const rowCount = metarTableElement.rows.length
+
+    if(rowCount > 6)
+    {
+        metarTableElement.deleteRow(rowCount - 1)
+    } else {
+
+        const row = metarTableElement.insertRow(1)
+
+        var stationIdCell = row.insertCell(0)
+        stationIdCell.innerHTML = `${station_id}`
+
+        var latitudeCell = row.insertCell(1)
+        latitudeCell.innerHTML = `${latitude}`
+
+        var longitudeCell = row.insertCell(2)
+        longitudeCell.innerHTML = `${longitude}`
+
+        var rawMETARCell = row.insertCell(3)
+        rawMETARCell.innerHTML = `${raw_metar}`
+    }
+}
+
 /* handle enter on the input box */
 document.addEventListener("DOMContentLoaded", () => {
     const metarInputElement = document.querySelector('#metar')
+    metarInputElement.focus()
     metarInputElement.addEventListener('keyup', evt => {
         if(evt.code === 'Enter'){
             evt.preventDefault();

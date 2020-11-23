@@ -4,7 +4,7 @@ body {
 }
 
 #mapid { 
-    height: 450px;
+    height: 480px;
 }
 
 header,
@@ -65,4 +65,24 @@ header, footer {
 
 .weather-element {
     color: darkslategrey;
+}
+
+.lifr-flight-category {
+    color: magenta;
+    background-color: darkslategray;
+}
+
+.ifr-flight-category {
+    color: red;
+    background-color: darkslategray;
+}
+
+.mvfr-flight-category {
+    color: blue;
+    background-color: cornsilk;
+}
+
+.vfr-flight-category {
+    color: green;
+    background-color: darkslategray;
 }
