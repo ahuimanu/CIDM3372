@@ -9,6 +9,10 @@
   },
   "author": "Dr. Babb",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahuimanu/CIDM3372"
+  },
   "dependencies": {
     "axios": "^0.21.0",
     "cors": "^2.8.5",
