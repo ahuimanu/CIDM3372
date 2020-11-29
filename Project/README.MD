@@ -57,7 +57,15 @@ The server can be run from the Project folder using this command:
 
 **TIP:** Useful article about keeping NPM packages updated within a project: [https://flaviocopes.com/update-npm-dependencies/](https://flaviocopes.com/update-npm-dependencies/)
 
-The client calls data from these endpoints and you can run them directly as well:
+Now, you can run the server with this command:
 
-* `http://localhost:3000/sunrise_sunset/:lat/:lng
-    * try running this sample: [http:]
+`npm start`
+
+The client calls data from these endpoints and you can run them directly as well.
+
+**SERVER MUST BE RUNNING!**
+* `http://localhost:3000/sunrise_sunset/:lat/:lng`
+    * try running this sample: [http://localhost:3000/sunrise_sunset/34.98289497028858/-101.91698595800695](http://localhost:3000/sunrise_sunset/34.98289497028858/-101.91698595800695)
+* `http://localhost:3000/addsmetar/:station`
+    * try running this sample: [http://localhost:3000/addsmetar/KDFW](http://localhost:3000/addsmetar/KDFW)
+
