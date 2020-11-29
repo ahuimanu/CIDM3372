@@ -57,7 +57,7 @@ The server can be run from the Project folder using this command:
 
 **TIP:** Useful article about keeping NPM packages updated within a project: [https://flaviocopes.com/update-npm-dependencies/](https://flaviocopes.com/update-npm-dependencies/)
 
-Now, you can run the server with this command:
+Now, you can run the server with this command from the main Project folder:
 
 `npm start`
 
@@ -69,3 +69,7 @@ The client calls data from these endpoints and you can run them directly as well
 * `http://localhost:3000/addsmetar/:station`
     * try running this sample: [http://localhost:3000/addsmetar/KDFW](http://localhost:3000/addsmetar/KDFW)
 
+
+The client code consumes this information from the server and shows it in the webpages.
+
+Try these first and I will soon provide parts of the client code.
