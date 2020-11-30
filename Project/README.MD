@@ -36,7 +36,7 @@ Some guidance on creating node modules can be found here: [How To Create a Node.
 * [Static METAR Plots data](https://www.aviationweather.gov/metar/help?page=plot#fltcat)
 * [METAR and text symbol matching](https://www.aviationweather.gov/docs/metar/wxSymbols_anno2.pdf)
 * [Symbol and METAR Code table](https://www.aviationweather.gov/metar/symbol)
-* [NOAA Forecase Icons](https://www.weather.gov/forecast-icons)
+* [NOAA Forecast Icons](https://www.weather.gov/forecast-icons)
 * [Sunrise/Sunset API](https://sunrise-sunset.org/api)
 
 ### How the heck do I run this?
