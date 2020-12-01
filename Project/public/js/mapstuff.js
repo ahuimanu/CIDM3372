@@ -22,23 +22,6 @@ const userAgentPositionUpdate = (position) => {
     let lon = 0;
 
     [lat, lon] = getUserAgentPosition(position)
-
-    // if(!localStorage.getItem('position')){
-    //     localStorage.setItem('position', position);
-    //     localStorage.setItem('lat', position.coords.latitude);
-    //     lat = position.coords.latitude;
-    //     localStorage.setItem('lon', position.coords.longitude);
-    //     lon = position.coords.longitude;        
-
-    //     console.log(`writing: lat=${lat};lon=${lon}`);
-
-    // } else {
-    //     lat = localStorage.getItem('lat');
-    //     lon = localStorage.getItem('lon');
-
-    //     console.log(`reading: lat=${lat};lon=${lon}`);        
-    // }
-
     headtext.textContent = `LAT: ${lat} LON: ${lon}`;
 
     const zoom = 11;
@@ -63,13 +46,13 @@ const userAgentPositionUpdate = (position) => {
             
         // selecting a tile layer
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        //remember to protect your key: https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ 
-        accessToken: 'pk.eyJ1IjoiYWh1aW1hbnU2OSIsImEiOiJja2c1bWZiZ3cwcW1lMnltZjRhYWVsNmIzIn0._LQ7JOXAhE_oXHSb1ZGfOA'
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            //remember to protect your key: https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ 
+            accessToken: 'pk.eyJ1IjoiYWh1aW1hbnU2OSIsImEiOiJja2c1bWZiZ3cwcW1lMnltZjRhYWVsNmIzIn0._LQ7JOXAhE_oXHSb1ZGfOA'
         }).addTo(mymap);    
     } else {
         
