@@ -115,7 +115,6 @@ Some pattern libraries are often called a style guide (or “living style guide�
 * Initialize a new nodejs project using the [Node Package Manager](https://docs.npmjs.com/getting-started/): `npm init -y`
 * Install KSS: `npm install --save-dev kss`
 
-
 ## JavaScript
 
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
@@ -1258,3 +1257,6 @@ We will go long, and supplement from other sources, on each of the these areas:
 * Store data on the user’s computer (§ 15.12) 
 * Perform concurrent computation with threads (§ 15.13)
 
+## A Simple Git Guide
+
+I use Git and Github throughout the corse and in all of my development courses.  [This is a good guide](https://rogerdudler.github.io/git-guide/) for the simplest and most useful parts of git.
