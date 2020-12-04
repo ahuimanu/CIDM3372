@@ -119,22 +119,37 @@ const updateWeatherOutput = async (json, site) => {
     // const longitude_element = document.querySelector('#longitude')
     // longitude_element.innerHTML = longitude_output
 
-    // MAP
-    // move the map to this new position
-    const zoom = 11;            
-    mymap.flyTo([latitude, longitude], zoom);
-
-    // set coords at top of page
-    const headtext = document.querySelector('#headertext');
-    headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
-
     // <div id="temp" class="weather-element"></div>    
     //temp
     const temp_c = metar.temp_c[0];
     const temp_f = CtoF(temp_c)
     const temp_output = `<strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`
     const temp_element = document.querySelector('#temp')
-    temp_element.innerHTML = temp_output
+    temp_element.innerHTML = temp_output    
+
+    // MAP
+    // move the map to this new position
+    const zoom = 11;            
+    mymap.flyTo([latitude, longitude], zoom);
+    const titleText = `${latitude} ${longitude}`
+    const myIcon = L.divIcon({ className: 'myDivIcon',
+                               html: '<i class="fas fa-map-marker-alt"></i>',
+                               iconSize: [20, 20]
+                            })
+    const marker = L.marker([latitude, longitude], 
+        {
+            title: titleText,
+            alt: "location",
+            riseOnHover: true,
+        })
+    marker.addTo(mymap)
+    marker.bindPopup(`<strong>STATION:</strong> ${station_id}<br>
+                      <strong>TEMP:</strong> ${temp_c} C (${temp_f} F)`)
+    marker.openPopup()
+
+    // set coords at top of page
+    const headtext = document.querySelector('#headertext');
+    headtext.textContent = `${site} - LAT: ${latitude} LON: ${longitude}`
 
     // <div id="dewpoint" class="weather-element"></div>    
     //dewpoint
@@ -228,9 +243,24 @@ const updateWeatherOutput = async (json, site) => {
     const metarTableElement = document.querySelector('#metar_table')
     const rowCount = metarTableElement.rows.length
 
-    if(rowCount > 6)
+    if(rowCount > 5)
     {
         metarTableElement.deleteRow(rowCount - 1)
+
+        const row = metarTableElement.insertRow(1)
+
+        var stationIdCell = row.insertCell(0)
+        stationIdCell.innerHTML = `${station_id}`
+
+        var latitudeCell = row.insertCell(1)
+        latitudeCell.innerHTML = `${latitude}`
+
+        var longitudeCell = row.insertCell(2)
+        longitudeCell.innerHTML = `${longitude}`
+
+        var rawMETARCell = row.insertCell(3)
+        rawMETARCell.innerHTML = `${raw_metar}`        
+
     } else {
 
         const row = metarTableElement.insertRow(1)
@@ -436,7 +466,7 @@ const selectWeatherIcon = async (json) => {
                     if(day) {
                         weather_icon_img_src = `${IMG_DAY_PREFIX}minus_ra.png`
                     } else {
-                        weather_icon_img_src = `${IMG_NIGHT_PREFIX}nminus_ra.png`
+                        weather_icon_img_src = `${IMG_NIGHT_PREFIX}nra.png`
                     }
                 }
 
