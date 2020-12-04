@@ -52,7 +52,7 @@ const userAgentPositionUpdate = (position) => {
             tileSize: 512,
             zoomOffset: -1,
             //remember to protect your key: https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ 
-            accessToken: 'pk.eyJ1IjoiYWh1aW1hbnU2OSIsImEiOiJja2c1bWZiZ3cwcW1lMnltZjRhYWVsNmIzIn0._LQ7JOXAhE_oXHSb1ZGfOA'
+            accessToken: 'your-key-goes-here'
         }).addTo(mymap);    
     } else {
         
