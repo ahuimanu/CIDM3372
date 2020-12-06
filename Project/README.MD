@@ -69,7 +69,8 @@ The client calls data from these endpoints and you can run them directly as well
 * `http://localhost:3000/addsmetar/:station`
     * try running this sample: [http://localhost:3000/addsmetar/KDFW](http://localhost:3000/addsmetar/KDFW)
 
-
 The client code consumes this information from the server and shows it in the webpages.
 
-Try these first and I will soon provide parts of the client code.
+## Running the app
+
+Point your browser to [http://localhost:3000](http://localhost:3000)
