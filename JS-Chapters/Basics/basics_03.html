@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baics_03</title>
+</head>
+<body>
+    <h2>Cool, what kinds of operations can I do?</h2>
+    <ul>
+        <li id='arithmetic'></li>
+        <li id="assignment"></li>
+        <li id="comparisons"></li>
+        <li id="logical"></li>
+    </ul>
+    <script>
+        // for variety, let's use random numbers for everything
+        let x = 0, y = 0;
+        
+        // wow, this looks crazy...
+        x = parseInt(Math.floor(Math.random() * 100))
+        console.log(`x is: ${x}`)
+        y = parseInt(Math.floor(Math.random() * 100))
+
+        // wow, this also looks crazy...
+        arithmetic_el = `this is arithmetic: ${x} + ${y} = ${x + y}`
+        // notice how we access text for the li element differently
+        document.getElementById('arithmetic').textContent = arithmetic_el;
+        
+        
+        assignment_el = document.getElementById('assignment')
+        assignment_el.textContent = `this is assignment: ${x} = 3`
+
+        comparisons_el = document.getElementById('comparisons')
+        comparisons_el.textContent = `this is a comparison: ${x} > ${y} = ${x > y}` 
+
+        logical_el = document.getElementById('logical')
+        logical_el.textContent = `${true} || ${false} => ${true || false}`
+    </script>
+    
+</body>
+</html>

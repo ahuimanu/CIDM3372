@@ -117,9 +117,16 @@ Some pattern libraries are often called a style guide (or â€œliving style guideâ
 
 ## JavaScript
 
+### Fall 2021:
+
+Here are some new source files with new examples:
+
+[Basics](JS-Chapters/Basics/basics.md)
+
 [JavaScript: The Definitive Guide, 7th Edition by David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/)
 
 [JS Book code repository](https://github.com/davidflanagan/jstdg7)
+
 
 ### Chapter 2 Basics and Running Code
 
