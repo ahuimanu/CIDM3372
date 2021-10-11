@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basics 6</title>
+</head>
+<body>
+    <p id="message"></p>
+    <script>
+        const person = {
+            firstName: "Juan",
+            lastName : "Smith",
+            age: 15,
+            cars: ["Saab", "Volvo", "BMW"],
+            fullName : (firstName, lastName) => {
+                return firstName + " " + lastName;
+            },
+            makeCarsList : (cars) => {
+                let cars_html = "I like these cars: <ul>"
+                // here we see selection and repetition
+                cars.forEach(car => {
+                    if(car == "BMW"){
+                        cars_html += `<li>Bayerische Motoren Werke AG</li>`
+                    } else {
+                        cars_html += `<li>${car}</li>`
+                    }
+                    
+                })
+                cars_html += "</ul>"
+                return cars_html
+            },
+        }
+
+        let fullName = person.fullName(person.firstName, person.lastName)
+        document.getElementById('message').innerHTML = fullName
+        console.log(person.cars)
+        document.writeln(person.makeCarsList(person.cars))
+
+    </script>
+</body>
+</html>

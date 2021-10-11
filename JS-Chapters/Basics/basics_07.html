@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basics_07</title>
+</head>
+<body>
+    <button id="press" 
+            onclick="react(event)"
+            onmouseover="mouse_in(event)"
+            onmouseout="mouse_out(event)">
+            Press Me
+    </button>
+    <p id="first"></p>
+    <p id="second"></p>
+    <p id="third"></p>
+    <script>
+        // arrow functions: https://www.w3schools.com/js/js_arrow_function.asp
+        const react = (event) => {
+
+            // maps are fun: https://www.w3schools.com/js/js_maps.asp
+            const mouse_buttons = new Map(
+                [
+                    [0, "no mouse"],
+                    [1, "the left mouse button"],
+                    [2, "the middle mouse button"],
+                    [3, "the right mouse button"],
+                ]
+            )
+
+            message = `you clicked the ${event.target} ` +
+                      `with the ${mouse_buttons.get(event.which)}`
+            document.getElementById('first').innerHTML = message
+        }
+
+        const mouse_in = (event) => {
+            const d =  new Date(Date.now())
+
+            const message = `you last entered the ${event.target} ` +
+                            `at ${d.toString()}`
+            document.getElementById('second').innerHTML = message
+        }
+        const mouse_out = (event) => {
+            const d =  new Date(Date.now())
+            const message = `you last left the ${event.target} ` +
+                            `at ${d.toString()}`
+            document.getElementById('third').innerHTML = message
+        }
+    </script>
+</body>
+</html>

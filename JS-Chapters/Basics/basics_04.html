@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basics 05</title>
+</head>
+<body>
+    <p id="greetings"></p>
+    <script>
+        const name = "Juan"
+        const age = 15
+        const cars = ["Saab", "Volvo", "BMW"]
+
+        const message = `Me llamo ${name}, quanto ${age} años`
+        document.getElementById("greetings").innerHTML = message
+
+        let cars_html = "I like these cars: <ul>"
+        // here we see selection and repetition
+        cars.forEach(car => {
+            if(car == "BMW"){
+                cars_html += `<li>Bayerische Motoren Werke AG</li>`
+            } else {
+                cars_html += `<li>${car}</li>`
+            }
+            
+        })
+        cars_html += "</ul>"
+        
+        document.write(cars_html)
+
+    </script>
+</body>
+</html>
