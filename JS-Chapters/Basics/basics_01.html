@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics One</title>
+</head>
+<body>
+    <h2>We want stuff to show up below</h2>
+    <p></p>
+    <div id='here'></div>
+    <!-- the script needs to go below the rest of the HTML so that the DOM loads first -->
+    <script>
+        //finding all elements of a type
+        paragraphs = document.getElementsByTagName('p')
+        // this stuff looks weird, what is it? https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+        console.log(`Number of paragraphs found: ${paragraphs.length}`)
+        paragraphs[0].innerHTML = "Selected used the p html tag name"
+
+        //finding a specific element by its ID attribute
+        document.getElementById('here').innerHTML = 'I put this here'
+    </script>    
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling and DOM Manipulation with Forms</title>
+
+    <!-- This is pretty cool, we can use Google Fonts (https://fonts.google.com/) to bring in a variety of
+    attractive and useful fonts into our application. -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu" rel="stylesheet">
+
+    <!-- You can also create a cutom favicon with websites like this one: https://favicon.io/
+    The images below had to be uploaded from that site -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">    
+    <style>
+        body {
+            font-family: 'Roboto';
+            font-size: 18px;
+        }
+
+        .awesome-output {
+            background-color: lavender;
+            color: orange;
+            font-style: oblique;
+        }
+
+        .info-message-span {
+            background-color: papayawhip;
+            color: crimson;
+            font-family: 'Ubuntu';
+        }
+
+        input[type=email],
+        input[type=text], 
+        input[type=tel],
+        input[type=pwd],
+        input[type=url] {
+            width: 100%;
+            padding: 8px 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=button], 
+        input[type=submit], 
+        input[type=reset] {
+            background-color: dodgerblue;
+            border: none;            
+            border-radius: 0.6rem;            
+            color: white;
+            cursor: pointer;
+            float: right;         
+            margin: 8px 8px;
+            padding: 16px 32px;            
+            text-decoration: none;   
+        }
+
+        input:invalid {
+            border: 2px dashed red;
+        }
+
+        /* input:invalid:required {
+            background-image: linear-gradient(to right, grey, lightgrey);
+        } */
+
+        input:valid {
+            border: 2px solid black;
+        }               
+
+        .form-label-text {
+            color:whitesmoke;
+            font-family: 'Lato';            
+        }
+
+        .form-input-text {
+            font-family: 'Lato';
+            float: right;
+        }
+
+        .form-output-text {
+            color:mintcream;   
+            font-family: 'Lato';                     
+            font-size: larger;
+        }
+
+        .rcorners {
+            border-radius: 0.6rem;
+            background: dodgerblue;
+            padding: 1.1rem;
+            margin: 0.6rem;
+            /* max-width: 500px; */
+            height: 65px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demonstrating Inputs, Events, and DOM Manipulation</h1>
+    <p>Messages: <span id="messages" class="info-message-span"></span></p>
+    <form action="#" name="personForm" method="post">
+        <div class="rcorners">
+            <!-- TODO: Use a javascript event handler to ensure that names are not longer
+            than 50 characters long -->
+            <label class="form-label-text" for="name">Enter your name (required)</label>
+            <input class="form-input-text" 
+                   id="name"                   
+                   name="name"
+                   onblur="formInputBlurred"
+                   onfocus="console.log(`Entered: ${this.name}`)"
+                   oninput="replicateTyping()"
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"                   
+                   type="text" 
+                   required
+                   autofocus>
+            <br><span id="name-error""></span>
+        </div>
+        <div class="rcorners">
+            <!-- TODO: Use a javascript event handler to ensure that passwords are at least 8 characters in length
+            and have uppercase, lowercase, and numeric characters -->
+            <label class="form-label-text" for="pwd">Enter a password</label>
+            <input class="form-input-text" 
+                   id="pwd"
+                   name="pwd"
+                   onblur="formInputBlurred"       
+                   onfocus="console.log(`Entered: ${this.name}`)"
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"                                      
+                   type="pwd" 
+                   required>
+        </div>
+        <div class="rcorners">
+            <!-- TODO: Use a javascript event handler to ensure that the email given is valid 
+                (hint: look for the @ and . characters) -->            
+            <label class="form-label-text" for="email">Enter an email address</label>
+            <input class="form-input-text" 
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"
+                   type="email" 
+                   name="email" 
+                   id="email"
+                   required>
+        </div>        
+        <div class="rcorners">
+            <!-- TODO: Use a javascript event handler to ensure that the phone number given conforms to 
+                       the United States format (xxx) xxx-xxxx -->
+            <label class="form-label-text" for="tel">Enter a phone number</label>
+            <input class="form-input-text" 
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"
+                   type="tel" 
+                   name="tel" 
+                   id="tel"
+                   required>
+        </div>
+        <div id="color-background" class="rcorners">
+            <!-- TODO: Use a javascript event handler to make the background of this div change to the
+                       selected color -->            
+            <label class="form-label-text" for="color">Please select a color</label>
+            <input class="form-input-text" 
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"
+                   type="color" 
+                   name="color" 
+                   id="color"
+                   required>
+        </div>  
+        <div class="rcorners">
+            <!-- TODO: Use a javascript event handler only allow URLs that start with https:// -->                        
+            <label class="form-label-text" for="url">Please enter your homepage url: </label>
+            <input class="form-input-text"
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"            
+                   type="url" 
+                   id="url" 
+                   name="url"
+                   required>
+        </div>        
+        <div class="rcorners">
+            <label class="form-label-text" for="awesome">As a percentage, how awesome are you? </label>
+            <input type="range" 
+                   onmouseover="mouseEnterMessages(this)"
+                   onmouseout="mouseOutMessage(this)"            
+                   name="awesome" 
+                   id="awesome" 
+                   min="0" 
+                   max="100" 
+                   step ="10" 
+                   value="50"
+                   onchange="awesomeInputChanged()">
+            <output class="form-output-text" for="price" onchange="awesomeOutputChanged()">50</output>
+
+            <!-- TODO: depending on the selected value, provide text output here based on how low or high the awesome value is:
+            suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
+            <output class="awesome-output"></output>
+        </div>
+        <input type="submit" value="submit">
+    </form>
+    <div>
+        <p id="show-results">Show results here on form submit</p>
+    </div>    
+    <script>
+
+        // TODO: Either reuse code I've already created below or start new event handlers
+        // whenever the user has incorrect input, refocus on the offending input field and
+        // display a message indicating the problem in the messages span at the top of the page.
+
+        /* mouse event handler*/
+        const mouseEnterMessages = (el) => {
+
+            console.log(`The mouse is in: ${el.name}`);
+            const messageSpanElement = document.querySelector('#messages');
+            switch(el.name){
+                case "awesome":
+                    messageSpanElement.textContent = "Use the awesome selector...";
+                    break;                                
+                case "color":
+                    messageSpanElement.textContent = "Select your favorite color...";
+                    break;                
+                case "email":
+                    messageSpanElement.textContent = "Please enter a valid email address...";
+                    break;                    
+                case "name":
+                    messageSpanElement.textContent = "Please enter your name here (Limit 50 characters)...";
+                    break;
+                case "pwd":
+                    messageSpanElement.textContent = "Please enter your password here (Must be at least 8 characters)...";
+                    break;                    
+                case "tel":
+                    messageSpanElement.textContent = "Please enter your telephone number here...";
+                    break;
+                case "url":
+                    messageSpanElement.textContent = "Please enter your homepage here...";
+                    break;                    
+            }
+        }
+
+        const mouseOutMessage = (el) => {
+            console.log(`The mouse has left: ${el.name}`);            
+            const messageSpanElement = document.querySelector('#messages');
+            messageSpanElement.textContent = "Awaiting your input...";
+        }
+
+        /* event handler for the awesome input field */
+        const awesomeInputChanged = () => {
+            const price = document.querySelector('#awesome');
+            const output = document.querySelector('.form-output-text');
+            console.log(price.value);
+            output.textContent = price.value;            
+        }
+        const awesomeOutputChanged = () => {
+            let awesomeElement = document.querySelector('.form-output-text');
+            console.log(awesomeElement);
+            let awesomeValue = awesomeElement.textContent;
+            console.log(`awesome: ${awesomeValue}`);
+        }        
+
+        const replicateTyping = () => {
+            let nameElement = document.querySelector('#name');
+            let nameSpanElement = document.querySelector('#name-error');
+            nameSpanElement.textContent = nameElement.value;
+        }
+
+        const formInputBlurred = (evt) => {
+
+            console.log(evt.name);
+
+            // notice how we can use the forms collection in the document 
+            // to access the values in the form fields.  
+            let nameText = document.forms['personForm']['name'].value;
+            nameText = nameText.toUpperCase();
+            document.forms['personForm']['name'].value = nameText;
+            console.log(nameText);
+        }
+    </script>            
+</body>
+</html>

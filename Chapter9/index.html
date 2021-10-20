@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9</title>
+    <!-- since we reset the box model and set a standard font to normalize user-agent discrepancies
+    we can also add the normalize.css stylesheet to assist: https://necolas.github.io/normalize.css/
+    -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="base.css">
+</head>
+<body>
+    <h1>DUDE</h1>
+    <!-- To use the module and modifier, both are added in succession -->
+
+    <!-- message styling for a div -->
+    <div class="message message--error">
+        Save successful
+    </div>
+
+    <!-- button styling -->
+    <div>
+        <button class="button button--success">OK</button>
+        <button class="button button--large">Save</button>
+    </div>
+
+    <!-- media styling -->
+    <div class="media">
+        <img class="media__image" src="runner.png">          
+        <div class="media__body">
+            <h4>Strength</h4>
+            <p>
+                Strength training is an important part of
+                injury prevention. Focus on your core&mdash;
+                especially your abs and glutes.
+            </p>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropdown__toggle">Main Menu</button>
+        <div class="dropdown__drawer">
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/coffees">Coffees</a></li>
+                <li><a href="/brewers">Brewers</a></li>
+                <li><a href="/specials">Specials</a></li>
+                <li><a href="/about">About us</a></li>
+            </ul>
+        </div>
+    </div>
+      
+    <script type="text/javascript">
+        (function () {
+            // good use of standard ES6+ JavaScript
+            var toggle =
+                document.querySelector('.dropdown__toggle');
+            toggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                var dropdown = event.target.parentNode;
+                dropdown.classList.toggle('is-open');
+            });
+        }());
+    </script>    
+</body>
+</html>

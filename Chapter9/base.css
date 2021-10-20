@@ -1,0 +1,186 @@
+/* Box sizing reset */
+:root {
+    box-sizing: border-box;                             
+}
+  
+*,
+*::before,
+*::after {
+    box-sizing: inherit;                                
+}
+
+/* Default font size for ems and rems */
+body {
+    font-family: Helvetica, Arial, sans-serif;          
+}
+
+/* this CSS class is considered a module */
+.message {                         
+    padding: 0.8em 1.2em;
+    border-radius: 0.2em;
+    border: 1px solid #265559;
+    color: #265559;
+    background-color: #e0f0f2;
+}
+
+/* MESSAGE MODULE AND VARIANTS */
+/* we can also include associated modifiers */
+/* variation to show a green 'success' styling */
+.message--success {                   
+    color: #2f5926;
+    border-color: #2f5926;
+    background-color:  #cfe8c9;
+}
+
+/* variation to show a yellow 'warning' styling */
+.message--warning {                   
+    color: #594826;
+    border-color: #594826;
+    background-color:  #e8dec9;
+}
+
+/* variation to show a red 'error' styling */
+.message--error {
+    color: #59262f;
+    border-color: #59262f;
+    background-color:  #e8c9cf;
+}
+
+/* BUTTON MODULE AND VARIANTS */
+.button {                            
+    padding: 0.5em 0.8em;
+    border: 1px solid #265559;
+    border-radius: 0.2em;
+    background-color: transparent;
+    font-size: 1rem;
+}
+  
+.button--success {
+    border-color: #cfe8c9;
+    color: #fff;
+    background-color: #2f5926;
+}
+  
+.button--danger {
+    border-color: #e8c9c9;
+    color: #fff;
+    background-color: #a92323;
+}
+  
+.button--small {
+    font-size: 0.8rem;
+}
+  
+.button--large {                    
+    font-size: 1.2rem;
+}
+
+/* Module with multiple elements */
+/* This is the main container for the module */
+.media {                         
+    padding: 1.5em;
+    background-color: #eee;
+    border-radius: 0.5em;
+}
+
+/* applying the clearfix */
+/* https://www.w3schools.com/howto/howto_css_clearfix.asp */
+.media::after {                  
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* image and body components */
+.media__image {                  
+    float: left;
+    margin-right: 1.5em;
+}
+
+.media__body {                   
+    overflow: auto;
+    margin-top: 0;
+}
+
+/* Title within the body */
+.media__body > h4 {              
+    margin-top: 0;
+}
+
+/* Targets image sub-element, but only when right modifier is present */
+.media--right > .media__image {          
+    float: right;
+}
+
+/* Dropdown module set */
+
+/* Establishes containing block for the absolutely positioned drawer */
+.dropdown {
+    display: inline-block;
+    position: relative;                             
+}
+
+/* Draws a triangle using borders */
+.dropdown__toggle {
+    padding: 0.5em 2em 0.5em 1.5em;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #eee;
+}
+  
+.dropdown__toggle::after {
+    content: "";
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    border: 0.3em solid;
+    border-color: black transparent transparent;
+}
+
+/* Hides the drawer initially, then displays it when the is-open class is present */
+.dropdown__drawer {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 2.1em;
+    min-width: 100%;
+    background-color: #eee;
+}
+
+/* Inverts the triangle while the dropdown is open */
+.dropdown.is-open .dropdown__toggle::after {
+    top: 0.7em;
+    border-color: transparent transparent black;
+}
+
+.dropdown.is-open .dropdown__drawer {
+    display: block;
+}
+
+/* Menu module */
+.menu {
+    margin: 0;
+    padding-left: 0;
+    /* Overrides user agent styles to remove list bullets */
+    list-style-type: none; 
+    border: 1px solid #999;
+}
+  
+.menu > li + li {
+    /* Adds a border between each link */
+    border-top: 1px solid #999;
+}
+
+/* Styles large clickable links */
+.menu > li > a {
+    display: block;
+    padding: 0.5em 1.5em;
+    background-color: #eee;
+    color: #369;
+    text-decoration: none;
+}
+
+/* Adds highlight on hover */
+.menu > li > a:hover {
+    background-color: #fff;
+}

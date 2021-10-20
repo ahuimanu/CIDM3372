@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Example</title>
+
+    <!-- normalize.css 
+         https://necolas.github.io/normalize.css/
+    -->
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+    <!-- my styles -->
+    <link rel="stylesheet" href="css/sytles.css" />
+
+    <link rel="stylesheet" 
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <!-- Using dayjs to help with the handling of dates and times -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.6/dayjs.min.js" 
+            integrity="sha512-C2m821NxMpJ4Df47O4P/17VPqt0yiK10UmGl59/e5ynRRYiCSBvy0KHJjhp2XIjUJreuR+y3SIhVyiVilhCmcQ==" 
+            crossorigin="anonymous"></script>
+
+    <!-- at the moment, the order of these matters -->
+    <script src="js/localstorage.js"></script>
+    <script src="js/utils.js"></script>    
+    <script src="js/mapstuff.js"></script>
+    <script src="js/weatherstuff.js"></script>
+</head>
+<body>
+    <div class="w3-container">
+        <div class="flex-container">
+            <h1>Map and Weather</h1>
+            <p>Showing leaflet, fetch, grid, flex, and W3CSS</p>
+        </div>
+        <div class="grid-container">
+            <header>
+                <h3 id="headertext">NOAA Weather</h3>
+            </header>
+            <aside>
+                <div class="w3-container w3-teal">
+                    <h3>Weather Input</h3>
+                </div>
+                <div id="alert_panel" class="w3-panel w3-hide w3-red">
+                    <h3>Required</h3>
+                    <p>Valid ICAO Station ID is Required</p>
+                </div>
+                <label class="w3-tooltip" for="metar">Station ID <span class="w3-text"> is required</span></label>
+                <input class="w3-input" 
+                       id="metar" 
+                       name="metar" 
+                       placeholder="METAR Station ID..." 
+                       type="text" >
+                <button onclick="getMETAR()" class="w3-button w3-block w3-dark-grey">Show METAR</button>
+            </aside>
+            <div id="mapid">
+                <!-- map goes in here -->
+            </div>                    
+            <aside> 
+                <div class="w3-container w3-teal">
+                    <h3>Weather Output</h3>
+                </div>
+                <div id="station_id" class="weather-element"></div>
+                <div id="raw_metar" class="weather-element"></div>                
+                <div id="observation_time" class="weather-element"></div>
+                <!-- <div id="latitude" class="weather-element"></div>                
+                <div id="longitude" class="weather-element"></div> -->
+                <div id="temp" class="weather-element"></div>
+                <div id="dewpoint" class="weather-element"></div>                
+                <div id="wind" class="weather-element"></div>
+                <div id="pressure" class="weather-element"></div>
+                <div id="sky_condition" class="weather-element"></div>
+                <div id="flight_category" class="weather-element"></div>                
+                <div id="weather_icon" class="weather-element"></div>
+            </aside>
+            <footer class="w3-container">
+                <div class="w3-container w3-teal">
+                    <h3>Recent Stations</h3>
+                </div>
+                <table id="metar_table" class="w3-table w3-border">
+                    <tr id="header_row">
+                        <th>Station</th>
+                        <th>Lat</th>
+                        <th>Lon</th>
+                        <th>METAR</th>
+                    </tr>
+                </table>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

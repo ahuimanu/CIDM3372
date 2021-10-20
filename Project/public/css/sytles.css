@@ -1,0 +1,95 @@
+body {
+    margin: 0 auto;
+    padding: 1em 0;
+}
+
+#mapid { 
+    height: 480px;
+}
+
+header,
+aside,
+footer {
+    background-color: lightblue;
+    padding: 1em;
+}
+
+header, footer {
+    grid-column: 1 / 4;
+    grid-auto-flow: column;
+}
+
+.grid-container {    
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px auto auto;
+    /* grid-template-areas:
+        'header header header header header header'
+        'menu main main main main right'
+        'footer footer footer footer footer'; */
+    grid-gap: 0.5em 0.5em;
+}
+
+.grid-container > #mapid {
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    flex-grow: inherit;
+    justify-content: stretch;
+}
+
+.grid-container > aside {
+    align-items: stretch;    
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    justify-content: start;    
+}
+
+.grid-container > header, footer {
+    display: flex;
+    flex: 2 1 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.flex-container {
+    align-items: center;    
+    display: flex;
+    height: 150px;
+    font-family: 'Work Sans', sans-serif;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-element {
+    color: darkslategrey;
+}
+
+.lifr-flight-category {
+    color: magenta;
+    background-color: darkslategray;
+}
+
+.ifr-flight-category {
+    color: red;
+    background-color: darkslategray;
+}
+
+.mvfr-flight-category {
+    color: blue;
+    background-color: cornsilk;
+}
+
+.vfr-flight-category {
+    color: greenyellow;
+    background-color: darkslategray;
+}
+
+.myDivIcon {
+    text-align: center;
+    /* Horizontally center the text (icon) */
+    line-height: 20px;
+    /* Vertically center the text (icon) */
+  }

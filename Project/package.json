@@ -1,0 +1,26 @@
+{
+  "name": "cidm3372-final-project-fall-2020",
+  "version": "1.0.0",
+  "description": "Code for the CIDM3372 final project for Fall 2020",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "author": "Dr. Babb",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahuimanu/CIDM3372"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "serve-favicon": "^2.5.0",
+    "stations-utils": "file:stations-utils",
+    "sunrise-sunset-utils": "file:sunrise-sunset-utils",
+    "weather-utils": "file:weather-utils",
+    "xml2js": "^0.4.23"
+  }
+}
