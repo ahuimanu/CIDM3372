@@ -104,7 +104,7 @@
     <form action="#" name="personForm" method="post">
         <div class="rcorners">
             <!-- TODO: Use a javascript event handler to ensure that names are not longer
-            than 50 characters long -->
+            than 50 characters -->
             <label class="form-label-text" for="name">Enter your name (required)</label>
             <input class="form-input-text" 
                    id="name"                   
@@ -127,7 +127,7 @@
             <input class="form-input-text" 
                    id="pwd"
                    name="pwd"
-                   onblur="formInputBlurred"       
+                   onblur="formInputBlurred(this)"       
                    onfocus="console.log(`Entered: ${this.name}`)"
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"                                      
@@ -182,6 +182,8 @@
                    required>
         </div>        
         <div class="rcorners">
+            <!-- TODO: depending on the selected value, provide text output here based on how low or high the awesome value is:
+            suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
             <label class="form-label-text" for="awesome">As a percentage, how awesome are you? </label>
             <input type="range" 
                    onmouseover="mouseEnterMessages(this)"
@@ -201,8 +203,7 @@
                        to the DOM. The use of the Mutation Observer is found in the JS code below.
             -->
 
-            <!-- TODO: depending on the selected value, provide text output here based on how low or high the awesome value is:
-            suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
+
             <output class="awesome-output"></output>
         </div>
         <input type="submit" value="submit">
