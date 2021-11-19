@@ -1,0 +1,19 @@
+{
+  "name": "weather-utils",
+  "version": "1.0.0",
+  "description": "Utilities for accessing NOAA ADDS data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NOAA",
+    "ADDS",
+    "METAR"
+  ],
+  "author": "tvs",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}

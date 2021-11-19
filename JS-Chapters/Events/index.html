@@ -104,20 +104,21 @@
     <form action="#" name="personForm" method="post">
         <div class="rcorners">
             <!-- TODO: Use a javascript event handler to ensure that names are not longer
-            than 50 characters long -->
+            than 50 characters -->
             <label class="form-label-text" for="name">Enter your name (required)</label>
             <input class="form-input-text" 
                    id="name"                   
                    name="name"
-                   onblur="formInputBlurred"
+                   onblur="formInputBlurred(this)"
                    onfocus="console.log(`Entered: ${this.name}`)"
-                   oninput="replicateTyping()"
+                   oninput="replicateTyping(this)"
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"                   
                    type="text" 
                    required
                    autofocus>
-            <br><span id="name-error""></span>
+            <br>
+            <p><span id="name-error"></span></p>
         </div>
         <div class="rcorners">
             <!-- TODO: Use a javascript event handler to ensure that passwords are at least 8 characters in length
@@ -126,7 +127,7 @@
             <input class="form-input-text" 
                    id="pwd"
                    name="pwd"
-                   onblur="formInputBlurred"       
+                   onblur="formInputBlurred(this)"       
                    onfocus="console.log(`Entered: ${this.name}`)"
                    onmouseover="mouseEnterMessages(this)"
                    onmouseout="mouseOutMessage(this)"                                      
@@ -181,6 +182,8 @@
                    required>
         </div>        
         <div class="rcorners">
+            <!-- TODO: depending on the selected value, provide text output here based on how low or high the awesome value is:
+            suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
             <label class="form-label-text" for="awesome">As a percentage, how awesome are you? </label>
             <input type="range" 
                    onmouseover="mouseEnterMessages(this)"
@@ -191,11 +194,16 @@
                    max="100" 
                    step ="10" 
                    value="50"
-                   onchange="awesomeInputChanged()">
-            <output class="form-output-text" for="price" onchange="awesomeOutputChanged()">50</output>
+                   onchange="awesomeInputChanged(this)">
+            <output class="form-output-text" for="awesome" onchange="awesomeOutputChanged(this)">50</output>
+            <!-- NOTE: It would be useful to be able to detect if anything about the DOM tree changed, because
+                       the output element is not considered an input element for user input, then it won't 
+                       naturally indicate that it has been changed.  However, we can use the MutationObserver API
+                       (https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to help detect ANY changes
+                       to the DOM. The use of the Mutation Observer is found in the JS code below.
+            -->
 
-            <!-- TODO: depending on the selected value, provide text output here based on how low or high the awesome value is:
-            suggestions: 0-25: Not awesome; 25-50: Kinda awesome; 51-75: Awesome; 76-100: Totally Awesome -->
+
             <output class="awesome-output"></output>
         </div>
         <input type="submit" value="submit">
@@ -247,17 +255,39 @@
 
         /* event handler for the awesome input field */
         const awesomeInputChanged = () => {
-            const price = document.querySelector('#awesome');
+            const awesome = document.querySelector('#awesome');
             const output = document.querySelector('.form-output-text');
-            console.log(price.value);
-            output.textContent = price.value;            
+            console.log(`from awesome input: ${awesome.value}`);
+            output.textContent = `${awesome.value}`;            
         }
-        const awesomeOutputChanged = () => {
-            let awesomeElement = document.querySelector('.form-output-text');
-            console.log(awesomeElement);
-            let awesomeValue = awesomeElement.textContent;
-            console.log(`awesome: ${awesomeValue}`);
-        }        
+
+        /* this wont' work the way we think it will, we'll use mutation observer */
+        // const awesomeOutputChanged = () => {
+        //     let awesomeElement = document.querySelector('.form-output-text');
+        //     console.log(awesomeElement);
+        //     let awesomeValue = awesomeElement.textContent;
+        //     console.log(`awesome: ${awesomeValue}`);
+        // }
+
+        /* the mutation observer will help detect changes in the DOM */
+        const mutationObserver = new MutationObserver( (mutations) => {
+            mutations.forEach( (mutation) => {
+                console.log(mutation.target.textContent)
+                //console.log(mutation.target.outerText)
+            })
+        })
+
+        let awesomeElement = document.querySelector('.form-output-text');
+
+        // mutationObserver.observe(document.documentElement, {
+        mutationObserver.observe(awesomeElement, {
+            atributes: true,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: true,
+            characterDataOldValue: true
+        })
 
         const replicateTyping = () => {
             let nameElement = document.querySelector('#name');
@@ -267,13 +297,13 @@
 
         const formInputBlurred = (evt) => {
 
-            console.log(evt.name);
+            console.log(`This event got triggered: ${evt.name}`);
 
             // notice how we can use the forms collection in the document 
             // to access the values in the form fields.  
             let nameText = document.forms['personForm']['name'].value;
-            nameText = nameText.toUpperCase();
-            document.forms['personForm']['name'].value = nameText;
+            let nameTextUpper = nameText.toUpperCase();
+            document.forms['personForm']['name'].value = nameTextUpper;
             console.log(nameText);
         }
     </script>            

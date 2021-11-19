@@ -1,0 +1,19 @@
+{
+  "name": "sunrise-sunset-utils",
+  "version": "1.0.0",
+  "description": "Utilities for working with the sunrise sunset api: https://sunrise-sunset.org/api ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sunrise",
+    "sunset",
+    "api"
+  ],
+  "author": "tvs",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
