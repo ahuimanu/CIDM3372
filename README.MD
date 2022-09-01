@@ -6,7 +6,7 @@ CSS and JavaScript
 
 ## CSS
 
-[CSS in Depth by Keith J. Grant](https://www.manning.com/books/css-in-depth)
+[Learning Web Design by Keith J. Grant](https://learningwebdesign.com/)
 
 [CSS Book code respository](https://github.com/CSSInDepth/css-in-depth)
 
