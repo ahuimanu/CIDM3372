@@ -5,6 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        a:hover, a:focus {
+            background-color: burlywood;
+            border-color: aqua;
+        }
+        .heady {
+            background-color: darkred;
+            text-align: center;
+            width: 10em;
+        }
+        .heady:hover, .heady:focus {
+            transform:rotate(15deg);            
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,7 +29,9 @@
             <li>Help</li>
         </ul>
     </header>
-    <h2>Article One</h2>
+    <div class="heady">
+        <h2>Article One</h2>
+    </div>
     <article>
         <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo, omnis voluptatem aut mollitia atque autem nulla asperiores velit minus, est voluptates odio quidem quis aperiam maxime at soluta maiores repellat?
