@@ -19,15 +19,28 @@
             transform:rotate(15deg);            
         }
     </style>
+    <script>
+        function sayHello() {
+            alert('Hello from the Button');
+        }
+        function changeAbout() {
+            var aboutEl = document.getElementById("about");
+            aboutEl.style.backgroundColor = "red";
+            aboutEl.style.fontWeight = "bold";
+            aboutEl.innerHTML = "ABOUT";
+            
+        }
+    </script>
 </head>
 <body>
     <header>
         Menu:
         <ul>
             <li><a href="blogindex.html">Main</a></li>
-            <li>About</li>
+            <li id="about">About</li>
             <li>Help</li>
         </ul>
+        <p>Change List <button onclick="changeAbout()">CHANGE</button></p>
     </header>
     <div class="heady">
         <h2>Article One</h2>
@@ -37,8 +50,14 @@
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo, omnis voluptatem aut mollitia atque autem nulla asperiores velit minus, est voluptates odio quidem quis aperiam maxime at soluta maiores repellat?
         </p>
     </article>
+    <div>
+        <button onclick="sayHello()">PRESS ME</button>
+    </div>
     <footer>
         Good blog
     </footer>
+    <script>
+        alert("hello, I am JavaScript");
+    </script>
 </body>
 </html>
