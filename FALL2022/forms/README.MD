@@ -8,3 +8,7 @@ The MDN has a [good tutorial](https://developer.mozilla.org/en-US/docs/Learn/Ser
 
 
 DEBUG=forms:* npm start
+
+# Sequelize
+
+# D3JS
