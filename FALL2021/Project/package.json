@@ -1,7 +1,7 @@
 {
-  "name": "cidm3372-final-project-fall-2020",
+  "name": "cidm3372-final-project-fall-2022",
   "version": "1.0.0",
-  "description": "Code for the CIDM3372 final project for Fall 2020",
+  "description": "Code for the CIDM3372 final project for Fall 2022",
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +16,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "serve-favicon": "^2.5.0",
     "stations-utils": "file:stations-utils",
     "sunrise-sunset-utils": "file:sunrise-sunset-utils",
