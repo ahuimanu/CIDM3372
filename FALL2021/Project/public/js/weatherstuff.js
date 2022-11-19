@@ -89,14 +89,20 @@ const updateWeatherOutput = async (json, site) => {
     //station id
     const station_id = metar.station_id[0]
     const station_id_output = `<strong>STATION:</strong> ${station_id}`
+
+    //write to output panel
     const station_id_element = document.querySelector('#station_id')
     station_id_element.innerHTML = station_id_output
+
+    //write to input panel
+    const input_station_id_element = document.querySelector('#input_station_id')
+    input_station_id_element.innerHTML = station_id_output
 
     // <div id="observation_time" class="weather-element"></div>
     const observation_time = metar.observation_time[0]
     const observation_time_output = `<strong>OBSERVED:</strong> ${observation_time}`
     const observation_time_element = document.querySelector('#observation_time')
-    station_id_element.innerHTML = observation_time_output
+    observation_time_element.innerHTML = observation_time_output
 
     // <div id="raw_metar" class="weather-element"></div>
     //raw metar
